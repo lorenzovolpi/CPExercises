@@ -36,7 +36,7 @@ int main() {
 		std::cin >> n;
 		vec.reserve(n);
 
-		for (int i = 0; i < n; ++i) 
+		for (int j = 0; j < n; ++j) 
 		{
 			int x = 0;
 			std::cin >> x;
