@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <deque>
 #include <climits>
 
 void maximum_subarrays(std::vector<int> vect, int k)
