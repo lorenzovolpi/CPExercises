@@ -12,7 +12,7 @@ This repository collects solutions to problems from [Competitive Programming and
 |        | [Sliding window maximum](http://practice.geeksforgeeks.org/problems/maximum-of-all-subarrays-of-size-k/0) | [maximum_subarrays_sizek.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson01/maximum_subarrays_sizek/maximum_subarrays_sizek.cpp) |
 | **02** - 17/09/2019 | [Next larger element](http://practice.geeksforgeeks.org/problems/next-larger-element/0) | [next_larger_element.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson02/next_larger_element/next_larger_element.cpp) |
 |        | [Towers](http://codeforces.com/problemset/problem/37/A?locale=en) | [towers.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson02/towers/towers.cpp) |
-|        | [Finding team member](http://codeforces.com/problemset/problem/579/B?locale=en) | [finding_team_member.cpp|(https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson02/finding_team_member/finding_team_member.cpp)
+|        | [Finding team member](http://codeforces.com/problemset/problem/579/B?locale=en) | [finding_team_member.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson02/finding_team_member/finding_team_member.cpp)
 | **03** - 23/09/2019 | [Inversion count](http://www.spoj.com/problems/INVCNT/) |  |
 |        | [Largest even number](http://practice.geeksforgeeks.org/problems/largest-even-number/0) |  |
 | **04** - 24/09/2019 |  |  |
