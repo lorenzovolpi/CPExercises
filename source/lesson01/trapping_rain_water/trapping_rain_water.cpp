@@ -1,6 +1,13 @@
 #include <iostream>
 #include <vector>
 
+int trapped_spot(int val, int& level) 
+{
+	if (val > level) level = val;
+
+	return level - val;
+}
+
 int trapping_rain_water(std::vector<int> vect)
 {
 	int i = 0, j = vect.size() - 1;
@@ -10,17 +17,13 @@ int trapping_rain_water(std::vector<int> vect)
 	{
 		if (vect[i] <= vect[j]) 
 		{
-			if (vect[i] > level) level = vect[i];
-
-			trw += level - vect[i];
+			trw += trapped_spot(vect[i], level);
 			i++;
 		}
 
 		if (vect[j] < vect[i])
 		{
-			if (vect[j] > level) level = vect[j];
-
-			trw += level - vect[j];
+			trw += trapped_spot(vect[j], level);
 			j--;
 		}
 	}
