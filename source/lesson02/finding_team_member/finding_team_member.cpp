@@ -18,16 +18,19 @@ struct team
 
 bool team_comp(team t1, team t2) 
 {
-	return t1.strength < t2.strength;
+	return t1.strength >= t2.strength;
 }
 
-std::vector<int> find_matches(std::vector<team> vect)
+std::vector<int> find_matches(std::vector<team> vect, int members)
 {
 	std::sort(vect.begin(), vect.end(), team_comp);
 
 	std::vector<int> matches;
-	matches.reserve(vect.size());
-	for (auto it = matches.begin(); it != matches.end(); ++it) *it = 0;
+	matches.reserve(members);
+	for (int i = 0; i < members; ++i)
+	{
+		matches.push_back(0);
+	}
 
 	for (auto it = vect.begin(); it != vect.end(); ++it)
 	{
@@ -48,24 +51,22 @@ int main()
 	std::cin >> teams_count;
 
 	std::vector<team> vect;
-	vect.reserve(teams_count * (2 * teams_count - 1));
+	vect.reserve(teams_count * ((2 * teams_count) - 1));
 
 	for (int i = 1; i < 2 * teams_count; ++i)
 	{
-		for (int j = i + 1; j <= 2 * teams_count; ++j)
+		for (int j = 0; j < i; ++j)
 		{
 			int s = 0;
 			std::cin >> s;
 			vect.emplace_back(i, j, s);
 		}
 	}
-
-	std::vector<int> matches = find_matches(vect);
+	
+	std::vector<int> matches = find_matches(vect, teams_count * 2);
 
 	for (auto it = matches.begin(); it != matches.end(); ++it) {
 		std::cout << *it << " ";
 	}
 	std::cout << "\n";
-
-
 }
