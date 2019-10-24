@@ -1,20 +1,57 @@
-// trapping_rain_water.cpp : Questo file contiene la funzione 'main', in cui inizia e termina l'esecuzione del programma.
-//
-
 #include <iostream>
+#include <vector>
+
+int trapping_rain_water(std::vector<int> vect)
+{
+	int i = 0, j = vect.size() - 1;
+	int level = 0, trw = 0;
+
+	while (i != j) 
+	{
+		if (vect[i] <= vect[j]) 
+		{
+			if (vect[i] > level) level = vect[i];
+
+			trw += level - vect[i];
+			i++;
+		}
+
+		if (vect[j] < vect[i])
+		{
+			if (vect[j] > level) level = vect[j];
+
+			trw += level - vect[j];
+			j--;
+		}
+	}
+
+	return trw;
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	int test_cases = 0;
+	std::cin >> test_cases;
+
+	std::vector<int> vect;
+
+	for (int i = 0; i < test_cases; ++i)
+	{
+		int n = 0;
+		std::cin >> n;
+		vect.reserve(n);
+
+		for (int j = 0; j < n; ++j)
+		{
+			int x = 0;
+			std::cin >> x;
+			vect.push_back(x);
+		}
+
+		int trw = trapping_rain_water(vect);
+
+		std::cout << trw << "\n";
+
+		vect.clear();
+	}
 }
-
-// Per eseguire il programma: CTRL+F5 oppure Debug > Avvia senza eseguire debug
-// Per eseguire il debug del programma: F5 oppure Debug > Avvia debug
-
-// Suggerimenti per iniziare: 
-//   1. Usare la finestra Esplora soluzioni per aggiungere/gestire i file
-//   2. Usare la finestra Team Explorer per connettersi al controllo del codice sorgente
-//   3. Usare la finestra di output per visualizzare l'output di compilazione e altri messaggi
-//   4. Usare la finestra Elenco errori per visualizzare gli errori
-//   5. Passare a Progetto > Aggiungi nuovo elemento per creare nuovi file di codice oppure a Progetto > Aggiungi elemento esistente per aggiungere file di codice esistenti al progetto
-//   6. Per aprire di nuovo questo progetto in futuro, passare a File > Apri > Progetto e selezionare il file con estensione sln
