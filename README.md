@@ -16,4 +16,12 @@ This repository collects solutions to problems from [Competitive Programming and
 | **03** - 23/09/2019 | [Inversion count](http://www.spoj.com/problems/INVCNT/) |  |
 |        | [Largest even number](http://practice.geeksforgeeks.org/problems/largest-even-number/0) |  |
 | **04** - 24/09/2019 |  |  |
+| **05** - 30/09/2019 | [Firing employees](http://practice.geeksforgeeks.org/problems/firing-employees/0) |  |
+|        | [Check for BST](http://practice.geeksforgeeks.org/problems/check-for-bst/1) |  |
+|        | [Preorder traversal and BST](http://practice.geeksforgeeks.org/problems/preorder-traversal-and-bst/0) |  |
+|        | [Maximum path sum](http://practice.geeksforgeeks.org/problems/maximum-path-sum/1) |  |
+| **06** - 01/10/2019| [Ilya and Queries](http://codeforces.com/problemset/problem/313/B?locale=en) |  |
+|        | [Alice, Bob and chocolate](http://codeforces.com/problemset/problem/6/C?locale=en) |  |
+|        | [Number of ways](http://codeforces.com/problemset/problem/466/C?locale=en) |  |
+|        | [Little girl and maximum sum](http://codeforces.com/problemset/problem/276/C?locale=en) |  |
 
