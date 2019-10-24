@@ -3,26 +3,32 @@
 #include <deque>
 #include <climits>
 
-void maximum_subarrays(std::vector<int> vect, int k)
+std::vector<int> maximum_subarrays(std::vector<int> vect, int k)
 {
 	std::vector<int> maximums;
 	maximums.reserve(vect.size() - k + 1);
-	int max = INT_MIN;
+	std::deque<int> deq;
 
-	auto it = vect.begin();
-
-	for (int i = 0; it != vect.end() && i < k; ++it, ++i) 
+	for (int i = 0; i < vect.size(); i++) 
 	{
-		if (max < *it) max = *it;
+		while (!deq.empty() && deq.front() <= (i - k)) 
+		{
+			deq.pop_front();
+		}
+
+		while (!deq.empty() && vect[deq.back()] <= vect[i])
+		{
+			deq.pop_back();
+		}
+
+		deq.push_back(i);
+
+		if (i >= k - 1) {
+			maximums.push_back(vect[deq.front()]);
+		}
 	}
 
-	maximums.push_back(max);
-
-	for (; it != vect.end(); ++it) 
-	{
-
-	}
-
+	return maximums;
 }
 
 int main()
@@ -47,7 +53,13 @@ int main()
 			vect.push_back(x);
 		}
 
-		maximum_subarrays(vect, k);
+		std::vector<int> maximums = maximum_subarrays(vect, k);
+
+		for (auto it = maximums.begin(); it != maximums.end(); ++it)
+		{
+			std::cout << *it << " ";
+		}
+		std::cout << "\n";
 
 		vect.clear();
 	}
