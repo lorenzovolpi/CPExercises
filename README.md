@@ -1,6 +1,6 @@
 # CPExercises
 
-This repository collects solutions to problems from [Competitive Programming and Contests](https://github.com/rossanoventurini/CompetitiveProgramming) classes (Computer Science MD at University of Pisa - 2019-20).
+This repository collects solutions to problems from [Competitive Programming and Contests](https://github.com/rossanoventurini/CompetitiveProgramming) classes (Computer Science MD at University of Pisa - 2019/20).
 
 | Lesson | Problem | Solution |
 | ------ | ------- | -------- |
