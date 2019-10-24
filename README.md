@@ -2,6 +2,7 @@
 
 This repository collects solutions to problems from [Competitive Programming and Contests](https://github.com/rossanoventurini/CompetitiveProgramming) classes (Computer Science MD at University of Pisa - 2019/20).
 
+
 | Lesson | Problem | Solution |
 | ------ | ------- | -------- |
 | **01** - 16/09/2019 | [Leaders in Array](http://practice.geeksforgeeks.org/problems/leaders-in-an-array/0) | [leaders_in_array.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson01/leaders_in_array/leaders_in_array.cpp) |
