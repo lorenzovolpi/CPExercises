@@ -12,8 +12,6 @@ struct team
 		member1(m1),
 		member2(m2),
 		strength(s) { }
-
-	
 };
 
 bool team_comp(team t1, team t2) 
