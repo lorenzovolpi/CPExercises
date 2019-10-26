@@ -14,7 +14,7 @@ This repository collects solutions to problems from [Competitive Programming and
 |        | [Towers](http://codeforces.com/problemset/problem/37/A?locale=en) | [towers.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson02/towers/towers.cpp) |
 |        | [Finding team member](http://codeforces.com/problemset/problem/579/B?locale=en) | [finding_team_member.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson02/finding_team_member/finding_team_member.cpp)
 | **03** - 23/09/2019 | [Inversion count](http://www.spoj.com/problems/INVCNT/) |  |
-|        | [Largest even number](http://practice.geeksforgeeks.org/problems/largest-even-number/0) |  |
+|        | [Largest even number](http://practice.geeksforgeeks.org/problems/largest-even-number/0) | [largest_even_number](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson03/largest_even_number) |
 | **04** - 24/09/2019 |  |  |
 | **05** - 30/09/2019 | [Firing employees](http://practice.geeksforgeeks.org/problems/firing-employees/0) |  |
 |        | [Check for BST](http://practice.geeksforgeeks.org/problems/check-for-bst/1) |  |
