@@ -29,15 +29,8 @@ void largest_even(std::vector<int>& digits)
 
 	merge_sort(digits, 0, digits.size() - 1, [](const int &i1, const int &i2)
 		{
-			return i1 > i2;
+			return -(i1 - i2);
 		});
-	
-	/*
-	std::sort(digits.begin(), digits.end(), [](const int &i1, const int &i2)
-		{
-			return i1 > i2;
-		});
-	*/
 
 	if (min_e < 10) {
 		digits.push_back(min_e);
