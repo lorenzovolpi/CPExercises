@@ -24,4 +24,12 @@ This repository collects solutions to problems from [Competitive Programming and
 |        | [Alice, Bob and chocolate](http://codeforces.com/problemset/problem/6/C?locale=en) |  |
 |        | [Number of ways](http://codeforces.com/problemset/problem/466/C?locale=en) |  |
 |        | [Little girl and maximum sum](http://codeforces.com/problemset/problem/276/C?locale=en) |  |
-
+| **07** - 07/10/2019 | [Megacity](http://codeforces.com/problemset/problem/424/B?locale=en) |  |
+|        | [Find pair](http://codeforces.com/problemset/problem/160/C?locale=en) |  |
+|        | [Two heaps](http://codeforces.com/problemset/problem/353/B?locale=en) |  |
+| **08** - 08/10/2019 |  |  |
+| **09** - 14/10/2019 | [Update the array](http://www.spoj.com/problems/UPDATEIT/) |  |
+| **10** - 15/10/2019 | [Nested segments](http://codeforces.com/problemset/problem/652/D?locale=en) |  |
+|        | [Pashmak and Parmida's problem](http://codeforces.com/problemset/problem/459/D?locale=en) |  |
+| **11** - 21/10/2019 | [Nested segments](http://codeforces.com/problemset/problem/652/D?locale=en) with Segment Trees |  |
+| **12** - 22/10/2019 | [Circular RMQ](http://codeforces.com/problemset/problem/52/C) |  |
