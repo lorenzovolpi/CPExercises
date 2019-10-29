@@ -5,11 +5,6 @@ int default_compare(const int &i1, const int &i2)
 	return i1 - i2;
 }
 
-int inverse_compare(const int& i1, const int& i2)
-{
-	return -(i1 - i2);
-}
-
 void merge(std::vector<int>& A, int f, int half, int l, std::function<int(int, int)> compare)
 {
 	std::vector<int> v1, v2;
@@ -67,12 +62,12 @@ int invcnt_merge(std::vector<int>& A, int f, int half, int l, std::function<int(
 		if (compare(v1[j], v2[k]) < 0) {
 			A[i] = v1[j];
 			++j; ++i;
-			invcnt += (l - f - half - k);
 		}
 		else if (compare(v1[j], v2[k]) > 0)
 		{
 			A[i] = v2[k];
 			++k; ++i;
+			invcnt += k;
 		}
 		else
 		{
@@ -86,6 +81,7 @@ int invcnt_merge(std::vector<int>& A, int f, int half, int l, std::function<int(
 	for (; i <= l && j < (half + 1); ++j, ++i)
 	{
 		A[i] = v1[j];
+		invcnt += k;
 	}
 
 	for (; i <= l && k < (l - f - half); ++k, ++i)
@@ -125,7 +121,7 @@ int invcnt_merge_sort(std::vector<int>& A, int f, int l)
 	invcnt += invcnt_merge_sort(A, f, f + half);
 	invcnt += invcnt_merge_sort(A, f + half + 1, l);
 
-	invcnt += invcnt_merge(A, f, half, l, inverse_compare);
+	invcnt += invcnt_merge(A, f, half, l, default_compare);
 
 	return invcnt;
 }
