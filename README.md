@@ -31,5 +31,5 @@ This repository collects solutions to problems from [Competitive Programming and
 | **09** - 14/10/2019 | [Update the array](http://www.spoj.com/problems/UPDATEIT/) |  |
 | **10** - 15/10/2019 | [Nested segments](http://codeforces.com/problemset/problem/652/D?locale=en) |  |
 |        | [Pashmak and Parmida's problem](http://codeforces.com/problemset/problem/459/D?locale=en) |  |
-| **11** - 21/10/2019 | [Nested segments](http://codeforces.com/problemset/problem/652/D?locale=en)  with Segment Trees |  |
+| **11** - 21/10/2019 | [Nested segments](http://codeforces.com/problemset/problem/652/D?locale=en) <br/>with Segment Trees |  |
 | **12** - 22/10/2019 | [Circular RMQ](http://codeforces.com/problemset/problem/52/C) |  |
