@@ -3,6 +3,7 @@
 #define BST__H
 
 #include <iostream>
+#include <vector>
 
 class bst
 {
@@ -33,7 +34,11 @@ public:
 
 	static bst* add(bst* root, int parent, int child, const std::string &pos);
 
+	static bst* add(bst* root, bst* child);
+
 	static bool check_bst(bst* root);
+
+	static bst* build_from_preorder(bst* root, std::vector<int> nums, int f, int l);
 
 };
 

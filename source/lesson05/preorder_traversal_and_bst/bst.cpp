@@ -62,10 +62,61 @@ bst* bst::add(bst* root, int ip, int ic, const std::string &pos)
 	return root;
 }
 
+bst* bst::add(bst* root, bst* child)
+{
+	if (root == NULL) root = child;
+
+	if (child->v > root->v)
+	{
+		if (root->r == NULL)
+		{
+			root->r = child;
+			child->p = root;
+		}
+		else
+		{
+			bst::add(root->r, child);
+		}
+	}
+
+	if (child->v < root->v)
+	{
+		if (root->l == NULL)
+		{
+			root->l = child;
+			child->p = root;
+		}
+		else 
+		{
+			bst::add(root->l, child);
+		}
+	}
+
+	return root;
+}
+
 bool bst::check_bst(bst* root)
 {
 	int last = INT_MIN;
 	return rec_check_bst(root, last);
 }
 
+bst* bst::build_from_preorder(bst* root, std::vector<int> nums, int f, int l)
+{
+	if (root == NULL) root = new bst(nums[f]);
 
+	int lf = f + 1, ll = f, rf = f + 1, rl = f;
+
+	for (int i = lf; i <= l && nums[i] < nums[f]; i++) { ll = i; }
+
+	rf = ll + 1;
+	rl = l;
+
+	if (lf <= ll) root->l = new bst(nums[lf], NULL, NULL, root);
+	if (rf <= rl) root->r = new bst(nums[rf], NULL, NULL, root);
+
+	if (root->l != NULL) bst::build_from_preorder(root->l, nums, lf, ll);
+	if (root->r != NULL) bst::build_from_preorder(root->r, nums, rf, rl);
+
+	return root;
+}
