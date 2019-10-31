@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 class node {
 private:
@@ -35,14 +36,68 @@ public:
 
 };
 
-void preorder_traversal(node* root)
+int sqr(int x) { return pow(x, 2); }
+
+std::vector<int> sieve_of_eratosthenes(int n) 
 {
-	std::cout << root->get_rank() << " ";
+	std::vector<int> nums;
+	nums.reserve(n + 1);
+
+	for (int i = 0; i <= n; ++i) { nums.push_back(i > 1 ? 1 : 0); }
+
+	int p = 2;
+	while (sqr(p) <= n) 
+	{
+		for (int f = p; f <= (n / p); ++f)
+		{
+			nums[f * p] = 0;
+		}
+
+		for (++p; nums[p] == 0; ++p) {}
+	}
+
+	std::vector<int> res;
+	for (int i = 0; i <= n; ++i)
+	{
+		if (nums[i] == 1) res.push_back(i);
+	}
+
+	return res;
+}
+
+int binary_search(const std::vector<int>& vec, int f, int l, int n)
+{
+	if (f > l) return 0;
+
+	int h = f + ((l - f) / 2);
+
+	if (n < vec[h]) return binary_search(vec, f, h - 1, n);
+	if (n > vec[h]) return binary_search(vec, h + 1, l, n);
+	if (n == vec[h]) return 1;
+}
+
+int is_prime(const std::vector<int>& primes, int n)
+{
+	return binary_search(primes, 0, primes.size() - 1, n);
+}
+
+int blacklist(node* root, int depth, const std::vector<int>& primes)
+{
+	int bls = 0;
+
+	if (depth > 0) 
+	{
+		bls += is_prime(primes, root->get_rank() + depth);
+	}
+
 	std::vector<node*> children = root->get_children();
+	++depth;
 	for (int i = 0; i<children.size(); ++i)
 	{
-		preorder_traversal(children[i]);
+		bls += blacklist(children[i], depth, primes);
 	}
+
+	return bls;
 }
 
 int main()
@@ -84,8 +139,9 @@ int main()
 			}
 		}
 
-		preorder_traversal(root);
-		std::cout << std::endl;
+		std::vector<int> primes = sieve_of_eratosthenes(n);
+		int bls = blacklist(root, 0, primes);
+		std::cout << bls << std::endl;
 		vec.clear();
 	}
 
