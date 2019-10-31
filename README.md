@@ -17,7 +17,7 @@ This repository collects solutions to problems from [Competitive Programming and
 |        | [Largest even number](http://practice.geeksforgeeks.org/problems/largest-even-number/0) | [largest_even_number](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson03/largest_even_number) |
 | **04** - 24/09/2019 |  |  |
 | **05** - 30/09/2019 | [Firing employees](http://practice.geeksforgeeks.org/problems/firing-employees/0) | [firing_employees.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson05/firing_employees/firing_employees.cpp) |
-|        | [Check for BST](http://practice.geeksforgeeks.org/problems/check-for-bst/1) |  |
+|        | [Check for BST](http://practice.geeksforgeeks.org/problems/check-for-bst/1) | [check_for_bst](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson05/check_for_bst) |
 |        | [Preorder traversal and BST](http://practice.geeksforgeeks.org/problems/preorder-traversal-and-bst/0) |  |
 |        | [Maximum path sum](http://practice.geeksforgeeks.org/problems/maximum-path-sum/1) |  |
 | **06** - 01/10/2019| [Ilya and Queries](http://codeforces.com/problemset/problem/313/B?locale=en) |  |
