@@ -16,7 +16,7 @@ This repository collects solutions to problems from [Competitive Programming and
 | **03** - 23/09/2019 | [Inversion count](http://www.spoj.com/problems/INVCNT/) | [inversion_count](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson03/inversion_count) |
 |        | [Largest even number](http://practice.geeksforgeeks.org/problems/largest-even-number/0) | [largest_even_number](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson03/largest_even_number) |
 | **04** - 24/09/2019 |  |  |
-| **05** - 30/09/2019 | [Firing employees](http://practice.geeksforgeeks.org/problems/firing-employees/0) |  |
+| **05** - 30/09/2019 | [Firing employees](http://practice.geeksforgeeks.org/problems/firing-employees/0) | [firing_employees.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson05/firing_employees/firing_employees.cpp) |
 |        | [Check for BST](http://practice.geeksforgeeks.org/problems/check-for-bst/1) |  |
 |        | [Preorder traversal and BST](http://practice.geeksforgeeks.org/problems/preorder-traversal-and-bst/0) |  |
 |        | [Maximum path sum](http://practice.geeksforgeeks.org/problems/maximum-path-sum/1) |  |
