@@ -1,5 +1,8 @@
 #include <iostream>
-#include "bst.h"
+#include <vector>
+#include "../../../lib/bst.h"
+#include "../../../lib/BinaryTree.h"
+
 
 int main()
 {
@@ -20,9 +23,10 @@ int main()
 			nums.push_back(x);
 		}
 
-		bst* root = bst::build_from_preorder(NULL, nums, 0, nums.size() - 1);
+		Bst* root = Bst::buildFromPreorder(NULL, nums, 0, nums.size() - 1);
 
-		if (bst::check_bst(root)) std::cout << 1;
+		int last = INT_MIN;
+		if (root->checkBst(last)) std::cout << 1;
 		else std::cout << 0;
 
 		std::cout << std::endl;

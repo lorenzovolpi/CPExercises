@@ -1,12 +1,12 @@
 #include <iostream>
-#include "bst.h"
+#include "../../../lib/bst.h"
 
 int main()
 {
 	int test_cases = 0;
 	std::cin >> test_cases;
 
-	bst* root = NULL;
+	Bst* root = NULL;
 
 	for (int i = 0; i < test_cases; ++i)
 	{
@@ -21,10 +21,13 @@ int main()
 			std::cin >> c;
 			std::cin >> pos;
 
-			root = bst::add(root, p, c, pos);
+			if (root == NULL) root = new Bst(p);
+
+			root->add(p, c, pos);
 		}
 
-		if (bst::check_bst(root)) std::cout << 1;
+		int last = INT_MIN;
+		if (root->checkBst(last)) std::cout << 1;
 		else std::cout << 0;
 
 		std::cout << std::endl;
