@@ -13,13 +13,13 @@ This repository collects solutions to problems from [Competitive Programming and
 | **02** - 17/09/2019 | [Next larger element](http://practice.geeksforgeeks.org/problems/next-larger-element/0) | [next_larger_element.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson02/next_larger_element/next_larger_element.cpp) |
 |        | [Towers](http://codeforces.com/problemset/problem/37/A?locale=en) | [towers.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson02/towers/towers.cpp) |
 |        | [Finding team member](http://codeforces.com/problemset/problem/579/B?locale=en) | [finding_team_member.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson02/finding_team_member/finding_team_member.cpp)
-| **03** - 23/09/2019 | [Inversion count](http://www.spoj.com/problems/INVCNT/) | [inversion_count](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson03/inversion_count) |
-|        | [Largest even number](http://practice.geeksforgeeks.org/problems/largest-even-number/0) | [largest_even_number](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson03/largest_even_number) |
+| **03** - 23/09/2019 | [Inversion count](http://www.spoj.com/problems/INVCNT/) | [inversion_count.cpp](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson03/inversion_count/inversion_count.cpp) |
+|        | [Largest even number](http://practice.geeksforgeeks.org/problems/largest-even-number/0) | [largest_even_number.cpp](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson03/largest_even_number/largest_even_number.cpp) |
 | **04** - 24/09/2019 |  |  |
 | **05** - 30/09/2019 | [Firing employees](http://practice.geeksforgeeks.org/problems/firing-employees/0) | [firing_employees.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson05/firing_employees/firing_employees.cpp) |
-|        | [Check for BST](http://practice.geeksforgeeks.org/problems/check-for-bst/1) | [check_for_bst](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson05/check_for_bst) |
-|        | [Preorder traversal and BST](http://practice.geeksforgeeks.org/problems/preorder-traversal-and-bst/0) | [preorder_traversal_and_bst](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson05/preorder_traversal_and_bst) |
-|        | [Maximum path sum](http://practice.geeksforgeeks.org/problems/maximum-path-sum/1) |  |
+|        | [Check for BST](http://practice.geeksforgeeks.org/problems/check-for-bst/1) | [check_for_bst.cpp](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson05/check_for_bst/check_for_bst.cpp) |
+|        | [Preorder traversal and BST](http://practice.geeksforgeeks.org/problems/preorder-traversal-and-bst/0) | [preorder_traversal_and_bst.cpp](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson05/preorder_traversal_and_bst/preorder_traversal_and_bst.cpp) |
+|        | [Maximum path sum](http://practice.geeksforgeeks.org/problems/maximum-path-sum/1) | [maximum_path_sum.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson05/maximum_path_sum/maximum_path_sum.cpp) |
 | **06** - 01/10/2019| [Ilya and Queries](http://codeforces.com/problemset/problem/313/B?locale=en) |  |
 |        | [Alice, Bob and chocolate](http://codeforces.com/problemset/problem/6/C?locale=en) |  |
 |        | [Number of ways](http://codeforces.com/problemset/problem/466/C?locale=en) |  |
