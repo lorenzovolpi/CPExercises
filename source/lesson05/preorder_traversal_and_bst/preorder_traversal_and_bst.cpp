@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include "../../../lib/bst.h"
-#include "../../../lib/BinaryTree.h"
 
 
 int main()
