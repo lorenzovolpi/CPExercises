@@ -20,7 +20,7 @@ int main()
 	bool eaten = false;
 	while (a < b && !eaten)
 	{
-		if (ta < tb) 
+		if (ta < tb)
 		{
 			if (!(eaten = a + 1 == b))
 			{
@@ -36,7 +36,7 @@ int main()
 				tb += vec[b];
 			}
 		}
-		else 
+		else
 		{
 			if (a + 1 == b - 1)
 			{
@@ -48,7 +48,7 @@ int main()
 			{
 				eaten = true;
 			}
-			else 
+			else
 			{
 				a++, b--;
 				ta += vec[a];
@@ -57,5 +57,5 @@ int main()
 		}
 	}
 
-	std::cout << a+1 << " " << n - b << std::endl;
+	std::cout << a + 1 << " " << n - b << std::endl;
 }
