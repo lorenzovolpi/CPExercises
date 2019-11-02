@@ -24,7 +24,7 @@ This repository collects solutions to problems from [Competitive Programming and
 |        | [Alice, Bob and chocolate](http://codeforces.com/problemset/problem/6/C?locale=en) | [alice_bob_and_chocolate.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson06/alice_bob_and_chocolate/alice_bob_and_chocolate.cpp) |
 |        | [Number of ways](http://codeforces.com/problemset/problem/466/C?locale=en) | [number_of_ways.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson06/number_of_ways/number_of_ways.cpp) |
 |        | [Little girl and maximum sum](http://codeforces.com/problemset/problem/276/C?locale=en) | [little_girl_and_maximum_sum.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson06/little_girl_and_maximum_sum/little_girl_and_maximum_sum.cpp) |
-| **07** - 07/10/2019 | [Megacity](http://codeforces.com/problemset/problem/424/B?locale=en) |  |
+| **07** - 07/10/2019 | [Megacity](http://codeforces.com/problemset/problem/424/B?locale=en) | [megacity.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson07/megacity/megacity.cpp) |
 |        | [Find pair](http://codeforces.com/problemset/problem/160/C?locale=en) |  |
 |        | [Two heaps](http://codeforces.com/problemset/problem/353/B?locale=en) |  |
 | **08** - 08/10/2019 |  |  |
