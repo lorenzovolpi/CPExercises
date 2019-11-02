@@ -22,7 +22,7 @@ This repository collects solutions to problems from [Competitive Programming and
 |        | [Maximum path sum](http://practice.geeksforgeeks.org/problems/maximum-path-sum/1) | [maximum_path_sum.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson05/maximum_path_sum/maximum_path_sum.cpp) |
 | **06** - 01/10/2019| [Ilya and Queries](http://codeforces.com/problemset/problem/313/B?locale=en) | [ilya_and_queries.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson06/ilya_and_queries/ilya_and_queries.cpp) |
 |        | [Alice, Bob and chocolate](http://codeforces.com/problemset/problem/6/C?locale=en) | [alice_bob_and_chocolate.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson06/alice_bob_and_chocolate/alice_bob_and_chocolate.cpp) |
-|        | [Number of ways](http://codeforces.com/problemset/problem/466/C?locale=en) |  |
+|        | [Number of ways](http://codeforces.com/problemset/problem/466/C?locale=en) | [number_of_ways.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson06/number_of_ways/number_of_ways.cpp) |
 |        | [Little girl and maximum sum](http://codeforces.com/problemset/problem/276/C?locale=en) |  |
 | **07** - 07/10/2019 | [Megacity](http://codeforces.com/problemset/problem/424/B?locale=en) |  |
 |        | [Find pair](http://codeforces.com/problemset/problem/160/C?locale=en) |  |
