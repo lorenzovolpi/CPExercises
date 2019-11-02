@@ -20,7 +20,7 @@ This repository collects solutions to problems from [Competitive Programming and
 |        | [Check for BST](http://practice.geeksforgeeks.org/problems/check-for-bst/1) | [check_for_bst.cpp](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson05/check_for_bst/check_for_bst.cpp) |
 |        | [Preorder traversal and BST](http://practice.geeksforgeeks.org/problems/preorder-traversal-and-bst/0) | [preorder_traversal_and_bst.cpp](https://github.com/lorenzovolpi/CPExercises/tree/master/source/lesson05/preorder_traversal_and_bst/preorder_traversal_and_bst.cpp) |
 |        | [Maximum path sum](http://practice.geeksforgeeks.org/problems/maximum-path-sum/1) | [maximum_path_sum.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson05/maximum_path_sum/maximum_path_sum.cpp) |
-| **06** - 01/10/2019| [Ilya and Queries](http://codeforces.com/problemset/problem/313/B?locale=en) |  |
+| **06** - 01/10/2019| [Ilya and Queries](http://codeforces.com/problemset/problem/313/B?locale=en) | [ilya_and_queries.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson06/ilya_and_queries/ilya_and_queries.cpp) |
 |        | [Alice, Bob and chocolate](http://codeforces.com/problemset/problem/6/C?locale=en) |  |
 |        | [Number of ways](http://codeforces.com/problemset/problem/466/C?locale=en) |  |
 |        | [Little girl and maximum sum](http://codeforces.com/problemset/problem/276/C?locale=en) |  |
