@@ -33,3 +33,5 @@ This repository collects solutions to problems from [Competitive Programming and
 |        | [Pashmak and Parmida's problem](http://codeforces.com/problemset/problem/459/D?locale=en) |  |
 | **11** - 21/10/2019 | [Nested segments](http://codeforces.com/problemset/problem/652/D?locale=en) <br/>with Segment Trees |  |
 | **12** - 22/10/2019 | [Circular RMQ](http://codeforces.com/problemset/problem/52/C) |  |
+| **13** - 28/10/2019 | [Powerful array](http://codeforces.com/contest/86/problem/D) |  |
+|        | [Tree and queries](http://codeforces.com/contest/375/problem/D) |  |
