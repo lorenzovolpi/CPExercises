@@ -55,4 +55,3 @@ int main()
 		std::cout << qs[i].n << std::endl;
 	}
 }
-
