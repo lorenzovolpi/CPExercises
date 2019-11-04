@@ -30,7 +30,7 @@ This repository collects solutions to problems from [Competitive Programming and
 | **08** - 08/10/2019 |  |  |
 | **09** - 14/10/2019 | [Update the array](http://www.spoj.com/problems/UPDATEIT/) | [update_the_array.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson09/update_the_array/update_the_array.cpp) |
 | **10** - 15/10/2019 | [Nested segments](http://codeforces.com/problemset/problem/652/D?locale=en) | [nested_segments.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson10/nested_segments/nested_segments.cpp) |
-|        | [Pashmak and Parmida's problem](http://codeforces.com/problemset/problem/459/D?locale=en) |  |
+|        | [Pashmak and Parmida's problem](http://codeforces.com/problemset/problem/459/D?locale=en) | [pashmak_and_parmida.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson10/pashmak_and_parmida/pashmak_and_parmida.cpp) |
 | **11** - 21/10/2019 | [Nested segments](http://codeforces.com/problemset/problem/652/D?locale=en) <br/>with Segment Trees |  |
 | **12** - 22/10/2019 | [Circular RMQ](http://codeforces.com/problemset/problem/52/C) |  |
 | **13** - 28/10/2019 | [Powerful array](http://codeforces.com/contest/86/problem/D) |  |
