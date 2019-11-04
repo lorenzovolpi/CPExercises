@@ -1,20 +1,59 @@
-// pashmak_and_parmida.cpp : Questo file contiene la funzione 'main', in cui inizia e termina l'esecuzione del programma.
-//
-
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include "../../../lib/fenwick_tree.h"
+
+struct sorter
+{
+	int i, v, r=0;
+	sorter(int index, int value) : i(index), v(value) {}
+};
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	int n = 0;
+	std::cin >> n;
+
+	std::vector<int> arr(n, 0);
+	std::vector<sorter> s;
+	s.reserve(n);
+
+	for (int i = 0; i < n; ++i)
+	{
+		int x; 
+		std::cin >> x;
+		s.emplace_back(i, x);
+	}
+
+	std::sort(s.begin(), s.end(), [](sorter s1, sorter s2)
+		{
+			return s1.v < s2.v;
+		});
+
+	for (int i = 0; i < n; ++i)
+	{
+		if ((i != 0 && s[i].v != s[i - 1].v) || i == 0) { s[i].r = i; }
+		else { s[i].r = s[i - 1].r; }
+
+		arr[s[i].i] = s[i].r;
+	}
+
+	std::vector<int> occ(n, 0), suffc(n, 0);
+
+	for (int i = n - 1; i >= 0; --i) { suffc[i] = ++occ[arr[i]]; }
+
+	fenwick_tree b(n);
+
+	for (int i = 0; i < n; ++i) { b.add(suffc[i], 1); }
+
+	int sum = 0;
+	for (int i = 0; i < n; ++i) occ[i] = 0;
+	for (int i = 0; i < n; ++i)
+	{
+		b.add(suffc[i], -1);
+		int k = ++occ[arr[i]];
+		sum += b.sum(k - 1);
+	}
+
+	std::cout << sum << std::endl;
 }
-
-// Per eseguire il programma: CTRL+F5 oppure Debug > Avvia senza eseguire debug
-// Per eseguire il debug del programma: F5 oppure Debug > Avvia debug
-
-// Suggerimenti per iniziare: 
-//   1. Usare la finestra Esplora soluzioni per aggiungere/gestire i file
-//   2. Usare la finestra Team Explorer per connettersi al controllo del codice sorgente
-//   3. Usare la finestra di output per visualizzare l'output di compilazione e altri messaggi
-//   4. Usare la finestra Elenco errori per visualizzare gli errori
-//   5. Passare a Progetto > Aggiungi nuovo elemento per creare nuovi file di codice oppure a Progetto > Aggiungi elemento esistente per aggiungere file di codice esistenti al progetto
-//   6. Per aprire di nuovo questo progetto in futuro, passare a File > Apri > Progetto e selezionare il file con estensione sln
