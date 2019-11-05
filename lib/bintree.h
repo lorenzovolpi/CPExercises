@@ -18,14 +18,12 @@ struct bintree
 
 	bintree* search(int value);
 	
-	void add(int p, int v, bt_side side);
+	void add_child(int p, int v, bt_side side);
 	
 	void inorder(std::function<void(bintree*)> f);
 	void preorder(std::function<void(bintree*)> f);
 	void postorder(std::function<void(bintree*)> f);
 
-	static bintree* build(std::vector<int> arr, int f, int l, std::function<int(int, int)> fun);
-	static bintree* build(std::vector<int> arr, int f, int l);
 };
 
 

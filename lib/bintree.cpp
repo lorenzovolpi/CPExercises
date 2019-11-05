@@ -15,7 +15,7 @@ bintree* bintree::search(int value)
 	return NULL;
 }
 
-void bintree::add(int p, int v, bt_side side)
+void bintree::add_child(int p, int v, bt_side side)
 {
 	bintree* parent = this->search(p);
 
@@ -48,23 +48,3 @@ void bintree::postorder(std::function<void(bintree*)> f)
 	f(this);
 }
 
-bintree* bintree::build(std::vector<int> arr, int f, int l, std::function<int(int, int)> fun)
-{
-	if (f == l) return &bintree(arr[f]);
-	
-	int h = (l - f) / 2;
-
-	bintree* lc = build(arr, f, f + h, fun);
-	bintree* rc = build(arr, f + h + 1, l, fun);
-
-	bintree* root = &bintree(fun(lc->v, rc->v), lc, rc, NULL);
-	lc->p = root;
-	rc->p = root;
-
-	return root;
-}
-
-bintree* bintree::build(std::vector<int> arr, int f, int l)
-{
-	return bintree::build(arr, f, l, [](int a, int b) { return a + b; });
-}
