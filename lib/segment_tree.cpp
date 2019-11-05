@@ -1,57 +1,114 @@
 #include "segment_tree.h"
 #include <vector>
 
-segment_tree::segment_tree(std::vector<int> vec, int lb, int ub) : p(NULL), lb(lb), ub(ub)
+segbintree::segbintree(int v, int lb, int ub) : bintree(v), lb(lb), ub(ub) {}
+
+segbintree::segbintree(int v, segbintree* p, int lb, int ub) : bintree(v, p), lb(lb), ub(ub) {}
+
+segbintree::segbintree(int v, segbintree* l, segbintree *r, segbintree *p, int lb, int ub) : bintree(v, l, r, p), lb(lb), ub(ub) {}
+
+segbintree* segbintree::getLeft()
 {
-	if (lb == ub)
-	{
-		this->v = vec[lb];
-		this->l = this->r = NULL;
-	}
-	else
-	{
-		int h = (ub - lb) / 2;
-		this->l = &segment_tree(vec, lb, lb + h);
-		this->r = &segment_tree(vec, lb + h + 1, ub);
-		this->l->p = this;
-		this->r->p = this;
-		this->v = this->r->v + this->l->v;
-	}
+	return (segbintree*)this->bintree::getLeft();
 }
 
-segment_tree::segment_tree(std::vector<int> vec)
+segbintree* segbintree::getRight()
 {
-	int ub = 1;
-	for (; ub < vec.size() + 1 && vec.size() > 0; ub *= 2) {}
-	for (int i = vec.size(); i < ub; ++i) { vec.push_back(0); }
-	this(vec, 0, ub - 1);
-};
+	return (segbintree*)this->bintree::getRight();
+}
 
-void segment_tree::add(int k, int val)
+segbintree* segbintree::getParent()
+{
+	return (segbintree*)this->bintree::getParent();
+}
+
+segbintree* segbintree::build(std::vector<int> vec)
+{
+	std::vector<segbintree*> segs;
+	for (int i = 0; i < vec.size(); ++i)
+	{
+		segs.push_back(new segbintree(vec[i], i, i));
+	}
+
+	int n = vec.size();
+	for (int k = n >> 1; k > 0; k = k >> 1)
+	{
+		for (int i = 0; i < vec.size(); i += n / k)
+		{
+			segbintree *l = segs[i], *r = segs[i + ((n / k) / 2)];
+			segbintree *p = new segbintree(l->getValue() + r->getValue(), l, r, NULL, i, i + (n / k) - 1);
+			l->setParent(p);
+			r->setParent(p);
+			segs[i] = p;
+		}
+	}
+
+	return segs[0];
+}
+
+void segbintree::segmentAdd(int k, int val)
 {
 	if (this->lb <= k && k <= this->ub)
 	{
-		this->v += val;
+		this->setValue(this->getValue() + val);
 		if (this->lb < this->ub)
 		{
-			((segment_tree*)(this->l))->add(k, val);
-			((segment_tree*)(this->r))->add(k, val);
+			this->getLeft()->segmentAdd(k, val);
+			this->getRight()->segmentAdd(k, val);
 		}
 	}
 }
 
+int segbintree::segmentSum(int j, int k)
+{
+	if (j <= this->lb && this->ub <= k) return this->getValue();
+	else if (k < this->lb || this->ub < j) return 0;
+	else
+	{
+		this->getLeft()->segmentSum(j, k) + this->getRight()->segmentSum(j, k);
+	}
+}
+
+segment_tree::segment_tree(std::vector<int> vec) 
+{
+	int u = 1;
+	for (; u < vec.size(); u *= 2) {}
+	for (int i = vec.size(); i < u; ++i) vec.push_back(0);
+	root = segbintree::build(vec);
+}
+
+segment_tree::segment_tree(int n)
+{
+	int u = 1;
+	for (; u < n; u *= 2) {}
+	std::vector<int> vec(u, 0);
+	root = segbintree::build(vec);
+}
+
+void segment_tree::add(int k, int val)
+{
+	this->root->segmentAdd(k, val);
+}
+
 int segment_tree::sum(int j, int k)
 {
-	if (j <= this->lb && this->ub <= k) return this->v;
-	else if (k < this->lb || this->ub < j) return 0;
-	else 
-	{
-		return ((segment_tree*)(this->l))->sum(j, k) + ((segment_tree*)(this->r))->sum(j, k);
-	}
+	return this->root->segmentSum(j, k);
 }
 
 int segment_tree::sum(int k)
 {
-	return this->sum(0, k);
+	return this->root->segmentSum(0, k);
 }
 
+void segment_tree::print_leafs()
+{
+}
+
+void segment_tree::print()
+{
+	this->root->inorderTraversal([](bintree* r)
+		{
+			std::cout << r->getValue() << " ";
+		});
+
+}

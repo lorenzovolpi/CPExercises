@@ -4,16 +4,41 @@
 #include <vector>
 #include "bintree.h"
 
-struct segment_tree : bintree
+class segbintree : public bintree
 {
+public:
 	int lb, ub;
 
+	segbintree(int v, int lb, int ub);
+	segbintree(int v, segbintree* p, int lb, int ub);
+	segbintree(int v, segbintree* l, segbintree* r, segbintree* p, int lb, int ub);
+
+	segbintree* getLeft();
+	segbintree* getRight();
+	segbintree* getParent();
+
+	static segbintree* build(std::vector<int> vec);
+
+	void segmentAdd(int k, int val);
+
+	int segmentSum(int j, int k);
+
+	using bintree::inorderTraversal;
+
+};
+
+struct segment_tree 
+{
+	segbintree* root;
+
 	segment_tree(std::vector<int> vec);
-	segment_tree(std::vector<int> vec, int lb, int ub);
+	segment_tree(int n);
 
 	void add(int k, int val);
 	int sum(int j, int k);
 	int sum(int k);
+	void print_leafs();
+	void print();
 };
 
 #endif

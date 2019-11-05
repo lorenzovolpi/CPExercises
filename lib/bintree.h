@@ -1,30 +1,46 @@
+#pragma once
 #ifndef BINTREE__H
-#define BINTREE_H
+#define BINTREE__H
 
 #include <iostream>
 #include <functional>
-#include <vector>
+#include <algorithm>
 
-enum class bt_side { right = 'R', left = 'L' };
-
-struct bintree
+class bintree
 {
-	bintree *l, *r, *p;
+private:
+
 	int v;
+	bintree* l;
+	bintree* r;
+	bintree* p;
 
-	bintree(int v);
-	bintree(int v, bintree* p);
-	bintree(int v, bintree* l, bintree* r, bintree* p);
+protected:
 
-	bintree* search(int value);
-	
-	void add_child(int p, int v, bt_side side);
-	
-	void inorder(std::function<void(bintree*)> f);
-	void preorder(std::function<void(bintree*)> f);
-	void postorder(std::function<void(bintree*)> f);
+	void setLeft(bintree* left);
+	void setRight(bintree* right);
+	void setParent(bintree* parent);
+
+public:
+	int getValue();
+	bintree* getLeft();
+	bintree* getRight();
+	bintree* getParent();
+
+	void setValue(int value);
+
+	bintree(int value);
+	bintree(int value, bintree* parent);
+	bintree(int value, bintree* left, bintree* right, bintree* parent);
+
+	virtual bintree* search(int value);
+
+	void add(int parent, int child, const std::string& pos);
+
+	int maxPathSum(int& mtl);
+
+	void inorderTraversal(std::function<void(bintree*)> fun);
 
 };
 
-
-#endif // !BINTREE__H
+#endif // !BINARYTREE__H
