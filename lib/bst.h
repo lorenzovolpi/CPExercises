@@ -6,35 +6,31 @@
 #include <vector>
 #include <algorithm>
 #include <functional>
-#include "BinaryTree.h"
+#include "bintree.h"
 
-class Bst : public BinaryTree
+class bst : public bintree
 {
 public:
 
-	Bst();
-	Bst(int value);
-	Bst(int value, Bst* left, Bst* right, Bst* parent);
+	bst(int value);
+	bst(int value, bst* parent);
+	bst(int value, bst* left, bst* right, bst* parent);
 
-	Bst* getLeft();
-	Bst* getRight();
-	Bst* getParent();
+	bst* getLeft();
+	bst* getRight();
+	bst* getParent();
 
-	BinaryTree* search(int value);
+	bintree* search(int value);
 	
-	using BinaryTree::add;
+	using bintree::add;
 
-	void add(Bst* child);
+	void add(bst* child);
 
 	bool checkBst(int& last);
 
-	static Bst* buildFromPreorder(Bst* root, std::vector<int> nums, int f, int l);
+	static bst* buildFromPreorder(bst* root, std::vector<int> nums, int f, int l);
 
 };
-
-
-
-
 
 #endif // !BST__H
 

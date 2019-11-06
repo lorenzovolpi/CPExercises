@@ -6,7 +6,7 @@ int main()
 	int test_cases = 0;
 	std::cin >> test_cases;
 
-	Bst* root = NULL;
+	bst* root = NULL;
 
 	for (int i = 0; i < test_cases; ++i)
 	{
@@ -21,7 +21,7 @@ int main()
 			std::cin >> c;
 			std::cin >> pos;
 
-			if (root == NULL) root = new Bst(p);
+			if (root == NULL) root = new bst(p);
 
 			root->add(p, c, pos);
 		}

@@ -2,19 +2,19 @@
 
 //Bst::public
 
-Bst::Bst() : BinaryTree() {};
+bst::bst(int value) : bintree(value) {};
 
-Bst::Bst(int value) : BinaryTree(value) {};
+bst::bst(int value, bst* parent) : bintree(value, parent) {};
 
-Bst::Bst(int value, Bst* left, Bst* right, Bst* parent) : BinaryTree(value, left, right, parent) {};
+bst::bst(int value, bst* left, bst* right, bst* parent) : bintree(value, left, right, parent) {};
 
-Bst* Bst::getLeft() { return (Bst*)BinaryTree::getLeft(); }
+bst* bst::getLeft() { return (bst*)bintree::getLeft(); }
 
-Bst* Bst::getRight() { return (Bst*)BinaryTree::getRight(); }
+bst* bst::getRight() { return (bst*)bintree::getRight(); }
 
-Bst* Bst::getParent() { return (Bst*)BinaryTree::getParent(); }
+bst* bst::getParent() { return (bst*)bintree::getParent(); }
 
-BinaryTree* Bst::search(int value)
+bintree* bst::search(int value)
 {
 	if (this->getValue() == value) return this;
 	if (value < this->getValue())
@@ -29,7 +29,7 @@ BinaryTree* Bst::search(int value)
 	}
 }
 
-void Bst::add(Bst* child)
+void bst::add(bst* child)
 {
 	if (child->getValue() > this->getValue())
 	{
@@ -60,7 +60,7 @@ void Bst::add(Bst* child)
 	return;
 }
 
-bool Bst::checkBst(int& last)
+bool bst::checkBst(int& last)
 {
 	bool res = true;
 
@@ -72,9 +72,9 @@ bool Bst::checkBst(int& last)
 	return res;
 }
 
-Bst* Bst::buildFromPreorder(Bst* root, std::vector<int> nums, int f, int l)
+bst* bst::buildFromPreorder(bst* root, std::vector<int> nums, int f, int l)
 {
-	if (root == NULL) root = new Bst(nums[f]);
+	if (root == NULL) root = new bst(nums[f]);
 
 	int lf = f + 1, ll = f, rf = f + 1, rl = f;
 
@@ -83,11 +83,11 @@ Bst* Bst::buildFromPreorder(Bst* root, std::vector<int> nums, int f, int l)
 	rf = ll + 1;
 	rl = l;
 
-	if (lf <= ll) root->setLeft(new Bst(nums[lf], NULL, NULL, root));
-	if (rf <= rl) root->setRight(new Bst(nums[rf], NULL, NULL, root));
+	if (lf <= ll) root->setLeft(new bst(nums[lf], NULL, NULL, root));
+	if (rf <= rl) root->setRight(new bst(nums[rf], NULL, NULL, root));
 
-	if (root->getLeft() != NULL) Bst::buildFromPreorder(root->getLeft(), nums, lf, ll);
-	if (root->getRight() != NULL) Bst::buildFromPreorder(root->getRight(), nums, rf, rl);
+	if (root->getLeft() != NULL) bst::buildFromPreorder(root->getLeft(), nums, lf, ll);
+	if (root->getRight() != NULL) bst::buildFromPreorder(root->getRight(), nums, rf, rl);
 
 	return root;
 }

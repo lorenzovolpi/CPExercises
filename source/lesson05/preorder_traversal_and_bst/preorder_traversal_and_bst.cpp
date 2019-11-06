@@ -22,7 +22,7 @@ int main()
 			nums.push_back(x);
 		}
 
-		Bst* root = Bst::buildFromPreorder(NULL, nums, 0, nums.size() - 1);
+		bst* root = bst::buildFromPreorder(NULL, nums, 0, nums.size() - 1);
 
 		int last = INT_MIN;
 		if (root->checkBst(last)) std::cout << 1;

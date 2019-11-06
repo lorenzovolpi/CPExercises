@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../../../lib/BinaryTree.h"
+#include "../../../lib/bintree.h"
 
 int main()
 {
@@ -10,7 +10,7 @@ int main()
 	{
 		int n = 0;
 		std::cin >> n;
-		BinaryTree* root = NULL;
+		bintree* root = NULL;
 		for (int j = 0; j < n; ++j)
 		{
 			int ip, ic;
@@ -20,7 +20,7 @@ int main()
 			std::cin >> ic;
 			std::cin >> pos;
 
-			if (root == NULL) root = new BinaryTree(ip);
+			if (root == NULL) root = new bintree(ip);
 
 			root->add(ip, ic, pos);
 		}

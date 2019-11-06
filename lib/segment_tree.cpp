@@ -50,7 +50,8 @@ void segbintree::segmentAdd(int k, int val)
 {
 	if (this->lb <= k && k <= this->ub)
 	{
-		this->setValue(this->getValue() + val);
+		int nval = this->getValue() + val;
+		this->setValue(nval);
 		if (this->lb < this->ub)
 		{
 			this->getLeft()->segmentAdd(k, val);
@@ -65,7 +66,7 @@ int segbintree::segmentSum(int j, int k)
 	else if (k < this->lb || this->ub < j) return 0;
 	else
 	{
-		this->getLeft()->segmentSum(j, k) + this->getRight()->segmentSum(j, k);
+		return this->getLeft()->segmentSum(j, k) + this->getRight()->segmentSum(j, k);
 	}
 }
 
@@ -102,6 +103,10 @@ int segment_tree::sum(int k)
 
 void segment_tree::print_leafs()
 {
+	this->root->inorderTraversal([](bintree* r)
+		{
+			if(r->getLeft() != nullptr || r->getRight() != nullptr) std::cout << r->getValue() << " ";
+		});
 }
 
 void segment_tree::print()
