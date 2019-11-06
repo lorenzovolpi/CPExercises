@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <climits>
 #include "../../../lib/segment_tree.h"
 
 struct query
