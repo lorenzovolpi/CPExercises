@@ -1,119 +1,129 @@
 #include "segment_tree.h"
 #include <vector>
+#include <functional>
 
-segbintree::segbintree(int v, int lb, int ub) : bintree(v), lb(lb), ub(ub) {}
+#define LEFT(i) ((2*i)+1)
+#define RIGHT(i) ((2*i)+2)
+#define PARENT(i) ((i-1)/2)
 
-segbintree::segbintree(int v, segbintree* p, int lb, int ub) : bintree(v, p), lb(lb), ub(ub) {}
-
-segbintree::segbintree(int v, segbintree* l, segbintree *r, segbintree *p, int lb, int ub) : bintree(v, l, r, p), lb(lb), ub(ub) {}
-
-segbintree* segbintree::getLeft()
+void segment_tree::build(std::vector<int>& tree, int i, std::function<int(int, int)> merge)
 {
-	return (segbintree*)this->bintree::getLeft();
+	if (LEFT(i) >= tree.size()) return;
+	
+	int l, r;
+	build(tree, LEFT(i), merge);
+	build(tree, RIGHT(i), merge);
+	tree[i] = merge(tree[LEFT(i)], tree[RIGHT(i)]);
 }
 
-segbintree* segbintree::getRight()
-{
-	return (segbintree*)this->bintree::getRight();
-}
-
-segbintree* segbintree::getParent()
-{
-	return (segbintree*)this->bintree::getParent();
-}
-
-segbintree* segbintree::build(std::vector<int> vec)
-{
-	std::vector<segbintree*> segs;
-	for (int i = 0; i < vec.size(); ++i)
-	{
-		segs.push_back(new segbintree(vec[i], i, i));
-	}
-
-	int n = vec.size();
-	for (int k = n >> 1; k > 0; k = k >> 1)
-	{
-		for (int i = 0; i < vec.size(); i += n / k)
-		{
-			segbintree *l = segs[i], *r = segs[i + ((n / k) / 2)];
-			segbintree *p = new segbintree(l->getValue() + r->getValue(), l, r, NULL, i, i + (n / k) - 1);
-			l->setParent(p);
-			r->setParent(p);
-			segs[i] = p;
-		}
-	}
-
-	return segs[0];
-}
-
-void segbintree::segmentAdd(int k, int val)
-{
-	if (this->lb <= k && k <= this->ub)
-	{
-		int nval = this->getValue() + val;
-		this->setValue(nval);
-		if (this->lb < this->ub)
-		{
-			this->getLeft()->segmentAdd(k, val);
-			this->getRight()->segmentAdd(k, val);
-		}
-	}
-}
-
-int segbintree::segmentSum(int j, int k)
-{
-	if (j <= this->lb && this->ub <= k) return this->getValue();
-	else if (k < this->lb || this->ub < j) return 0;
-	else
-	{
-		return this->getLeft()->segmentSum(j, k) + this->getRight()->segmentSum(j, k);
-	}
-}
-
-segment_tree::segment_tree(std::vector<int> vec) 
+segment_tree::segment_tree(std::vector<int> vec, int neutral, std::function<int(int,int)> merge) : neutral(neutral), merge(merge)
 {
 	int u = 1;
 	for (; u < vec.size(); u *= 2) {}
-	for (int i = vec.size(); i < u; ++i) vec.push_back(0);
-	root = segbintree::build(vec);
+	for (int i = vec.size(); i < u; ++i) vec.push_back(neutral);
+	this->n = u;
+
+	tree = std::vector<int>(2 * u - 1);
+	for (int i = tree.size() - 1, j = u - 1; j >= 0; --i, --j) tree[i] = vec[j];
+
+	lazy = std::vector<int>(2 * u - 1, 0);
+
+	build(tree, 0, merge);
 }
 
-segment_tree::segment_tree(int n)
+segment_tree::segment_tree(int n, int neutral, std::function<int(int, int)> merge) : neutral(neutral), merge(merge)
 {
 	int u = 1;
 	for (; u < n; u *= 2) {}
-	std::vector<int> vec(u, 0);
-	root = segbintree::build(vec);
+	this->n = u;
+	tree = std::vector<int>(2 * u - 1, neutral);
+	lazy = std::vector<int>(2 * u - 1, 0);
+}
+
+segment_tree::segment_tree(std::vector<int> vec) : segment_tree(vec, 0, [](int v1, int v2){ return v1 + v2; }) {}
+
+segment_tree::segment_tree(int n) : segment_tree(n, 0, [](int v1, int v2) { return v1 + v2; }) {}
+
+void segment_tree::segment_add(int k, int val, int i, int lb, int ub)
+{
+	update(i);
+	if (lb <= k && k <= ub)
+	{
+		if (lb < ub)
+		{
+			int h = (ub - lb) / 2;
+			segment_add(k, val, LEFT(i), lb, lb + h);
+			segment_add(k, val, RIGHT(i), lb + h + 1, ub);
+
+			tree[i] = this->merge(tree[LEFT(i)], tree[RIGHT(i)]);
+		}
+		else tree[i] += val;
+	}
+}
+
+int segment_tree::segment_sum(int j, int k, int i, int lb, int ub)
+{
+	update(i);
+	if (j <= lb && ub <= k) return tree[i];
+	else if (k < lb || ub < j) return this->neutral;
+	else
+	{
+		int h = (ub - lb) / 2;
+		return this->merge(segment_sum(j, k, LEFT(i), lb, lb + h), segment_sum(j, k, RIGHT(i), lb + h + 1, ub));
+	}
+}
+
+int segment_tree::segment_update_range(int j, int k, int val, int i, int lb, int ub)
+{
+	update(i);
+	if (j <= lb && ub <= k)
+	{
+		tree[i] += val;
+		if (LEFT(i) < tree.size())
+		{
+			lazy[LEFT(i)] += val;
+			lazy[RIGHT(i)] += val;
+		}
+	}
+	else if (k >= lb && j <= ub) 
+	{
+		int h = (ub - lb) / 2;
+		tree[i] = this->merge(segment_update_range(j, k, val, LEFT(i), lb, lb + h), segment_update_range(j, k, val, RIGHT(i), lb + h + 1, ub));
+	}
+
+	return tree[i];
+}
+
+void segment_tree::update(int i)
+{
+	if (lazy[i] != 0)
+	{
+		tree[i] += lazy[i];
+		if (LEFT(i) < tree.size())
+		{
+			lazy[LEFT(i)] += lazy[i];
+			lazy[RIGHT(i)] += lazy[i];
+		}
+		lazy[i] = 0;
+	}
 }
 
 void segment_tree::add(int k, int val)
 {
-	this->root->segmentAdd(k, val);
+	segment_add(k, val, 0, 0, this->n - 1);
 }
 
 int segment_tree::sum(int j, int k)
 {
-	return this->root->segmentSum(j, k);
+	return (j <= k) ? segment_sum(j, k, 0, 0, this->n - 1) : this->neutral;
 }
 
 int segment_tree::sum(int k)
 {
-	return this->root->segmentSum(0, k);
+	return sum(0, k);
 }
 
-void segment_tree::print_leafs()
+void segment_tree::range_update(int j, int k, int val)
 {
-	this->root->inorderTraversal([](bintree* r)
-		{
-			if(r->getLeft() != nullptr || r->getRight() != nullptr) std::cout << r->getValue() << " ";
-		});
-}
-
-void segment_tree::print()
-{
-	this->root->inorderTraversal([](bintree* r)
-		{
-			std::cout << r->getValue() << " ";
-		});
-
+	if(j <= k) segment_update_range(j, k, val, 0, 0, this->n - 1);
 }
