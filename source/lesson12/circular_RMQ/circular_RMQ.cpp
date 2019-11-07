@@ -1,20 +1,65 @@
-// circular_RMQ.cpp : Questo file contiene la funzione 'main', in cui inizia e termina l'esecuzione del programma.
-//
-
 #include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include "../../../lib/segment_tree.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	int n = 0;
+	std::cin >> n;
+
+	std::vector<int> arr;
+	arr.reserve(n);
+
+	for (int i = 0; i < n; i++)
+	{
+		int x = 0;
+		std::cin >> x;
+		arr.push_back(x);
+	}
+
+	segment_tree st(arr, INT_MAX, [](int v1, int v2) 
+		{
+			return std::min(v1, v2);
+		});
+
+	int q = 0;
+	std::cin >> q;
+	std::string s;
+	std::getline(std::cin, s);
+	int query[4];
+	for (int i = 0; i < q; i++)
+	{
+		int count = 0;
+		std::getline(std::cin, s);
+		std::istringstream iss(s);
+		while (!iss.eof())
+		{
+			iss >> query[count];
+			count++;
+		}
+
+		if (count == 2)
+		{
+			int j = query[0], k = query[1];
+			int res;
+			if (j > k) res = std::min(st.sum(j, arr.size() - 1), st.sum(0, k));
+			else res = st.sum(j, k);
+
+			std::cout << res << std::endl;
+		}
+		if (count == 3)
+		{
+			int j = query[0], k = query[1];
+			int res;
+			if (j > k)
+			{
+				st.range_update(j, arr.size() - 1, query[2]);
+				st.range_update(0, k, query[2]);
+			}
+			else st.range_update(j, k, query[2]);
+		}
+	}
 }
-
-// Per eseguire il programma: CTRL+F5 oppure Debug > Avvia senza eseguire debug
-// Per eseguire il debug del programma: F5 oppure Debug > Avvia debug
-
-// Suggerimenti per iniziare: 
-//   1. Usare la finestra Esplora soluzioni per aggiungere/gestire i file
-//   2. Usare la finestra Team Explorer per connettersi al controllo del codice sorgente
-//   3. Usare la finestra di output per visualizzare l'output di compilazione e altri messaggi
-//   4. Usare la finestra Elenco errori per visualizzare gli errori
-//   5. Passare a Progetto > Aggiungi nuovo elemento per creare nuovi file di codice oppure a Progetto > Aggiungi elemento esistente per aggiungere file di codice esistenti al progetto
-//   6. Per aprire di nuovo questo progetto in futuro, passare a File > Apri > Progetto e selezionare il file con estensione sln
