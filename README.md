@@ -32,6 +32,6 @@ This repository collects solutions to problems from [Competitive Programming and
 | **10** - 15/10/2019 | [Nested segments](http://codeforces.com/problemset/problem/652/D?locale=en) | [nested_segments.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson10/nested_segments/nested_segments.cpp) |
 |        | [Pashmak and Parmida's problem](http://codeforces.com/problemset/problem/459/D?locale=en) | [pashmak_and_parmida.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson10/pashmak_and_parmida/pashmak_and_parmida.cpp) |
 | **11** - 21/10/2019 | [Nested segments](http://codeforces.com/problemset/problem/652/D?locale=en) <br/>with Segment Trees | [nested_segments_st.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson11/nested_segments_st/nested_segments_st.cpp) |
-| **12** - 22/10/2019 | [Circular RMQ](http://codeforces.com/problemset/problem/52/C) |  |
+| **12** - 22/10/2019 | [Circular RMQ](http://codeforces.com/problemset/problem/52/C) | [circular_RMQ.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson12/circular_RMQ/circular_RMQ.cpp) |
 | **13** - 28/10/2019 | [Powerful array](http://codeforces.com/contest/86/problem/D) |  |
 |        | [Tree and queries](http://codeforces.com/contest/375/problem/D) |  |
