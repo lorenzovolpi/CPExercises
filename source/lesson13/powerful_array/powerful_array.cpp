@@ -46,7 +46,6 @@ void remove(std::vector<int>& count, int& answer, int val)
 	answer += count[val];
 }
 
-
 int main()
 {
 	int n, t;
@@ -110,5 +109,4 @@ int main()
 
 		std::cout << answer << std::endl;
 	}
-
 }
