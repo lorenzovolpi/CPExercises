@@ -35,3 +35,9 @@ This repository collects solutions to problems from [Competitive Programming and
 | **12** - 22/10/2019 | [Circular RMQ](http://codeforces.com/problemset/problem/52/C) |  |
 | **13** - 28/10/2019 | [Powerful array](http://codeforces.com/contest/86/problem/D) |  |
 |        | [Tree and queries](http://codeforces.com/contest/375/problem/D) |  |
+| **14** - 29/10/2019 |  |  |
+| **15** - 11/11/2019 | [Longest Common Subsequence](https://practice.geeksforgeeks.org/problems/longest-common-subsequence/0) |  |
+|        | [Knapsack](https://www.spoj.com/problems/KNAPSACK/) |  |
+| **16** - 12/11/2019 | [Subset sum](https://practice.geeksforgeeks.org/problems/subset-sum-problem/0) |  |
+|        | [Minimum number of jumps](https://practice.geeksforgeeks.org/problems/minimum-number-of-jumps/0) |  |
+|        | [Edit distance](https://practice.geeksforgeeks.org/problems/edit-distance/0) |  |
