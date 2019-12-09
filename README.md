@@ -36,7 +36,7 @@ This repository collects solutions to problems from [Competitive Programming and
 | **13** - 28/10/2019 | [Powerful array](http://codeforces.com/contest/86/problem/D) | [powerful_array.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson13/powerful_array/powerful_array.cpp) |
 |        | [Tree and queries](http://codeforces.com/contest/375/problem/D) |  |
 | **14** - 29/10/2019 |  |  |
-| **15** - 11/11/2019 | [Longest Common Subsequence](https://practice.geeksforgeeks.org/problems/longest-common-subsequence/0) |  |
+| **15** - 11/11/2019 | [Longest Common Subsequence](https://practice.geeksforgeeks.org/problems/longest-common-subsequence/0) | [longest_common_subsequence.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson15/longest_common_subsequnce/longest_common_subsequence.cpp) |
 |        | [Knapsack](https://www.spoj.com/problems/KNAPSACK/) |  |
 | **16** - 12/11/2019 | [Subset sum](https://practice.geeksforgeeks.org/problems/subset-sum-problem/0) |  |
 |        | [Minimum number of jumps](https://practice.geeksforgeeks.org/problems/minimum-number-of-jumps/0) |  |
