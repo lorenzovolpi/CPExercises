@@ -2,43 +2,31 @@
 #define SEGMENT_TREE__H
 
 #include <vector>
-#include "bintree.h"
+#include <functional>
 
-class segbintree : public bintree
+struct segment_tree
 {
+private:
+	void segment_add(int k, int val, int i, int lb, int ub);
+	int segment_sum(int j, int k, int i, int lb, int ub);
+	int segment_update_range(int j, int k, int val, int i, int lb, int ub);
+	void update(int i);
 public:
-	int lb, ub;
+	std::vector<int> tree, lazy;
+	int neutral, n;
+	std::function<int(int, int)> merge;
 
-	segbintree(int v, int lb, int ub);
-	segbintree(int v, segbintree* p, int lb, int ub);
-	segbintree(int v, segbintree* l, segbintree* r, segbintree* p, int lb, int ub);
-
-	segbintree* getLeft();
-	segbintree* getRight();
-	segbintree* getParent();
-
-	static segbintree* build(std::vector<int> vec);
-
-	void segmentAdd(int k, int val);
-
-	int segmentSum(int j, int k);
-
-	using bintree::inorderTraversal;
-
-};
-
-struct segment_tree 
-{
-	segbintree* root;
-
+	segment_tree(std::vector<int> vec, int neutral, std::function<int(int, int)> merge);
+	segment_tree(int n, int neutral, std::function<int(int, int)> merge);
 	segment_tree(std::vector<int> vec);
 	segment_tree(int n);
+
+	static void build(std::vector<int>& tree, int i, std::function<int(int, int)> merge);
 
 	void add(int k, int val);
 	int sum(int j, int k);
 	int sum(int k);
-	void print_leafs();
-	void print();
+	void range_update(int j, int k, int val);
 };
 
 #endif
