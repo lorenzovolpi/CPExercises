@@ -37,7 +37,7 @@ This repository collects solutions to problems from [Competitive Programming and
 |        | [Tree and queries](http://codeforces.com/contest/375/problem/D) |  |
 | **14** - 29/10/2019 |  |  |
 | **15** - 11/11/2019 | [Longest Common Subsequence](https://practice.geeksforgeeks.org/problems/longest-common-subsequence/0) | [longest_common_subsequence.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson15/longest_common_subsequnce/longest_common_subsequence.cpp) |
-|        | [Knapsack](https://www.spoj.com/problems/KNAPSACK/) |  |
+|        | [Knapsack](https://www.spoj.com/problems/KNAPSACK/) | [knapsack.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson15/knapsack/knapsack.cpp) |
 | **16** - 12/11/2019 | [Subset sum](https://practice.geeksforgeeks.org/problems/subset-sum-problem/0) |  |
 |        | [Minimum number of jumps](https://practice.geeksforgeeks.org/problems/minimum-number-of-jumps/0) |  |
 |        | [Edit distance](https://practice.geeksforgeeks.org/problems/edit-distance/0) |  |
