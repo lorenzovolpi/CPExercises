@@ -39,8 +39,8 @@ This repository collects solutions to problems from [Competitive Programming and
 | **15** - 11/11/2019 | [Longest Common Subsequence](https://practice.geeksforgeeks.org/problems/longest-common-subsequence/0) | [longest_common_subsequence.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson15/longest_common_subsequnce/longest_common_subsequence.cpp) |
 |        | [Knapsack](https://www.spoj.com/problems/KNAPSACK/) | [knapsack.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson15/knapsack/knapsack.cpp) |
 | **16** - 12/11/2019 | [Subset sum](https://practice.geeksforgeeks.org/problems/subset-sum-problem/0) | [subset_sum.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson16/subset_sum/subset_sum.cpp) |
-|        | [Minimum number of jumps](https://practice.geeksforgeeks.org/problems/minimum-number-of-jumps/0) |  |
-|        | [Edit distance](https://practice.geeksforgeeks.org/problems/edit-distance/0) |  |
+|        | [Minimum number of jumps](https://practice.geeksforgeeks.org/problems/minimum-number-of-jumps/0) | [minimum_jumps.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson16/minimum_jumps/minimum_jumps.cpp) |
+|        | [Edit distance](https://practice.geeksforgeeks.org/problems/edit-distance/0) | [edit_distance.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson16/edit_distance/edit_distance.cpp) |
 | **17** - 19/11/2019 | [Longest increasing subsequence](https://practice.geeksforgeeks.org/problems/longest-increasing-subsequence/0) |  |
 |        | [Longest bitonic subsequence](https://practice.geeksforgeeks.org/problems/longest-bitonic-subsequence/0) |  |
 | **18** - 25/11/2019 | [Vertex cover](http://www.spoj.com/problems/PT07X/) |  |
