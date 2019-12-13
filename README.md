@@ -49,3 +49,12 @@ This repository collects solutions to problems from [Competitive Programming and
 |        | [Magic numbers](http://codeforces.com/problemset/problem/320/A?locale=en) | [magic_numbers.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson19/magic_numbers/magic_numbers.cpp) |
 |        | [Wilbur and array](http://codeforces.com/problemset/problem/596/B?locale=en) | [wilbur_array.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson19/wilbur_array/wilbur_array.cpp) |
 |        | [Alternative thinking](http://codeforces.com/problemset/problem/603/A?locale=en) | [alternative_thinking.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson19/alternative_thinking/alternative_thinking.cpp) |
+| **20** - 02/12/2019 | [Lexicographically maximum subsequence](http://codeforces.com/problemset/problem/196/A?locale=en) | [lexicographically_maximum_subsequence.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson20/lexicographically_maximum_subsequence/lexicographically_maximum_subsequence.cpp) |
+|        | [Woodcutters](http://codeforces.com/contest/545/problem/C?locale=en) | [wood_cutters.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson20/wood_cutters/wood_cutters.cpp) |
+|        | [Queue](http://codeforces.com/problemset/problem/141/C?locale=en) | [queue.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson20/queue/queue.cpp)
+| **21** - 03/12/2019 | [X total shapes](http://practice.geeksforgeeks.org/problems/x-total-shapes/0) | [x_total_shapes.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson21/x_total_shapes/x_total_shapes.cpp) |
+|        | [IsBipartite](http://practice.geeksforgeeks.org/problems/bipartite-graph/1) | [bipartite_graph.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson21/bipartite_graph/bipartite_graph.cpp) |
+|        | [Fox and names](http://codeforces.com/problemset/problem/510/C?locale=en) | [fox_and_names.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson21/fox_and_names/fox_and_names.cpp) | 
+| **22** - 09/12/2019 | [Learning languages](http://codeforces.com/problemset/problem/277/A?locale=en) | [learning_languages.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson22/learning_languages/learning_languages.cpp) |
+|        | [Checkpots](http://codeforces.com/problemset/problem/427/C?locale=en) |  |
+| **23** - 10/12/2019 | [Minimum spanning tree](http://www.spoj.com/problems/MST/) |  |
