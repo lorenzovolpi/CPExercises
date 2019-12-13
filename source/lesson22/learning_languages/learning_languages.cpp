@@ -40,11 +40,13 @@ int main() {
     std::cin >> m;
     std::vector<std::vector<node*>> languages(m+1);
     std::vector<node*> graph(n);
+    int nl_sum = 0;
     for(int i = 0; i< n; ++i) {
         node* nd = new node(i);
         graph[i] = nd;
         int nl = 0;
         std::cin >> nl;
+        nl_sum += nl;
         for(int j = 0; j<nl; ++j) {
             int x = 0;
             std::cin >> x;
@@ -56,7 +58,7 @@ int main() {
         }
     }
 
-    int res = count_scc(graph) - 1;
+    int res = nl_sum == 0 ? n : count_scc(graph) - 1;
 
     std::cout << res << std::endl;
 }
