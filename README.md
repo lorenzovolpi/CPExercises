@@ -34,7 +34,7 @@ This repository collects solutions to problems from [Competitive Programming and
 | **11** - 21/10/2019 | [Nested segments](http://codeforces.com/problemset/problem/652/D?locale=en) <br/>with Segment Trees | [nested_segments_st.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson11/nested_segments_st/nested_segments_st.cpp) |
 | **12** - 22/10/2019 | [Circular RMQ](http://codeforces.com/problemset/problem/52/C) | [circular_RMQ.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson12/circular_RMQ/circular_RMQ.cpp) |
 | **13** - 28/10/2019 | [Powerful array](http://codeforces.com/contest/86/problem/D) | [powerful_array.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson13/powerful_array/powerful_array.cpp) |
-|        | [Tree and queries](http://codeforces.com/contest/375/problem/D) |  |
+|        | [Tree and queries](http://codeforces.com/contest/375/problem/D) | [tree_and_queries.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson13/tree_and_queries/tree_and_queries.cpp) |
 | **14** - 29/10/2019 |  |  |
 | **15** - 11/11/2019 | [Longest Common Subsequence](https://practice.geeksforgeeks.org/problems/longest-common-subsequence/0) | [longest_common_subsequence.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson15/longest_common_subsequnce/longest_common_subsequence.cpp) |
 |        | [Knapsack](https://www.spoj.com/problems/KNAPSACK/) | [knapsack.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson15/knapsack/knapsack.cpp) |
