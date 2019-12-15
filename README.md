@@ -1,6 +1,6 @@
 # Competitive Programming and Contests - Exercises
 
-This repository collects solutions to problems from [Competitive Programming and Contests](https://github.com/rossanoventurini/CompetitiveProgramming) classes (Computer Science MD at University of Pisa - 2019/20).
+This repository collects solutions to problems from [Competitive Programming and Contests](https://github.com/rossanoventurini/CompetitiveProgramming) class (Computer Science MD at University of Pisa - 2019/20).
 <br/><br/>
 
 | Lesson | Problem | Solution |
