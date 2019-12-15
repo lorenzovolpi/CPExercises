@@ -56,5 +56,5 @@ This repository collects solutions to problems from [Competitive Programming and
 |        | [IsBipartite](http://practice.geeksforgeeks.org/problems/bipartite-graph/1) | [bipartite_graph.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson21/bipartite_graph/bipartite_graph.cpp) |
 |        | [Fox and names](http://codeforces.com/problemset/problem/510/C?locale=en) | [fox_and_names.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson21/fox_and_names/fox_and_names.cpp) | 
 | **22** - 09/12/2019 | [Learning languages](http://codeforces.com/problemset/problem/277/A?locale=en) | [learning_languages.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson22/learning_languages/learning_languages.cpp) |
-|        | [Checkposts](http://codeforces.com/problemset/problem/427/C?locale=en) |  |
-| **23** - 10/12/2019 | [Minimum spanning tree](http://www.spoj.com/problems/MST/) |  |
+|        | [Checkposts](http://codeforces.com/problemset/problem/427/C?locale=en) | [checkposts.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson22/checkposts/checkposts.cpp) |
+| **23** - 10/12/2019 | [Minimum spanning tree](http://www.spoj.com/problems/MST/) | [minimum_spanning_tree.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson23/minimum_spanning_tree/minimum_spanning_tree.cpp) |
