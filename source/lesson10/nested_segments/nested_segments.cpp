@@ -1,13 +1,52 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "../../../lib/fenwick_tree.h"
+#include <climits>
+
+struct bit
+{
+	std::vector<int> v;
+
+    bit(int n) : v(n + 1, 0) {};
+
+    bit(int n, int val) : v(n + 1, val)
+    {
+        v[0] = 0;
+        for (int i = 0; (i + (i & -1)) <= n; ++i) { v[i + (i & -i)] += v[i]; }
+    };
+
+    bit(std::vector<int> vec) : v(vec.size() + 1)
+    {
+        v[0] = 0;
+        for (int i = 0; i < vec.size(); ++i) { v[i + 1] = vec[i]; }
+        for (int i = 1; (i + (i & -i)) <= vec.size(); ++i) { v[i + (i & -i)] += v[i]; }
+    };
+
+    void add(int k, int val)
+    {
+        for (++k; k < v.size(); k += k & -k) { v[k] += val; }
+    }
+
+    int sum(int k)
+    {
+        int s = 0;
+        for (++k; k > 0; k -= k & -k) { s += v[k]; }
+        return s;
+    }
+};
 
 struct query
 {
 	int f, l, i, n = 0;
 
 	query(int first, int last, int index) : f(first), l(last), i(index) {};
+};
+
+struct query_bound{
+    int64_t i, v;
+    bool first;
+
+    query_bound(int64_t i, int64_t v, bool first) : i(i), v(v), first(first) {}
 };
 
 
@@ -29,20 +68,34 @@ int main()
 		qs.emplace_back(f, l, i);
 	}
 
-	int delta = 0;
-	if (min < 0) delta = 0 - min;
+	std::vector<query_bound> bounds;
+    for(int i = 0; i<q; ++i) {
+        bounds.emplace_back(i, qs[i].f, true);
+        bounds.emplace_back(i, qs[i].l, false);
+    }
 
-	std::sort(qs.begin(), qs.end(), [](query q1, query q2)
+    std::sort(bounds.begin(), bounds.end(), [](query_bound qb1, query_bound qb2) {
+        return qb1.v < qb2.v;
+    });
+
+    for(int i = 0; i<bounds.size(); ++i) {
+        if(bounds[i].first) qs[bounds[i].i].f = i;
+        else qs[bounds[i].i].l = i;
+    }
+
+    std::sort(qs.begin(), qs.end(), [](query q1, query q2)
 		{
 			return q1.f > q2.f;
 		});
 
-	fenwick_tree ft(max + delta + 1);
+    int64_t maxl = q*2 - 1;
+
+	bit ft(maxl + 1);
 
 	for (int i = 0; i < q; ++i)
 	{
-		qs[i].n = ft.sum(qs[i].l + delta);
-		ft.add(qs[i].l + delta, 1);
+		qs[i].n = ft.sum(qs[i].l);
+		ft.add(qs[i].l, 1);
 	}
 
 	std::sort(qs.begin(), qs.end(), [](query q1, query q2)

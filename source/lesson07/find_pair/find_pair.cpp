@@ -2,6 +2,12 @@
 #include <vector>
 #include <algorithm>
 
+struct pair{
+	int a, b;
+
+	pair(int a, int b) : a(a), b(b) {}
+};
+
 int main()
 {
 	int n, k;
@@ -17,10 +23,18 @@ int main()
 		arr.push_back(x);
 	}
 
-	std::sort(arr.begin(), arr.end());
+	std::vector<pair> ps;
+	for(int i = 0; i<n; ++i) {
+		for(int j = 0; j<n; ++j) {
+			ps.emplace_back(arr[i], arr[j]);
+		}
+	}
+
+	std::sort(ps.begin(), ps.end(), [](pair p1, pair p2) {
+		return p1.a == p2.a ? p1.b < p2.b : p1.a < p2.a;
+	});
 
 	--k;
-	int p1 = arr[k / n], p2 = arr[k % n];
 
-	std::cout << p1 << " " << p2 << std::endl;
+	std::cout << ps[k].a << " " << ps[k].b << std::endl;
 }

@@ -1,11 +1,13 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <cmath>
+#include <climits>
 
 struct query
 {
-	int l, r, b;
-	query(int l, int r, int n) : l(l), r(r) 
+	int l, r, b, i, a = 0;
+	query(int l, int r, int n, int i) : l(l), r(r), i(i) 
 	{
 		double _b = (double)l / sqrt(n);
 		b = _b;
@@ -62,7 +64,7 @@ int main()
 
 	int m = max(arr);
 	std::vector<int> count(m + 1, 0);
-	count[arr[0]]++;
+	count[arr[0]] += arr[0];
 	int answer = arr[0];
 
 	std::vector<query> queries;
@@ -72,7 +74,7 @@ int main()
 		int l, r;
 		std::cin >> l;
 		std::cin >> r;
-		queries.emplace_back(l-1, r-1, n);
+		queries.emplace_back(l-1, r-1, n, i);
 	}
 
 	std::sort(queries.begin(), queries.end(), [](query q1, query q2)
@@ -107,6 +109,14 @@ int main()
 			add(count, answer, arr[cl]);
 		}
 
-		std::cout << answer << std::endl;
+		//std::cout << answer << std::endl;
+		queries[i].a = answer;
 	}
+
+	std::sort(queries.begin(), queries.end(), [](query q1, query q2)
+		{
+			return q1.i < q2.i;
+		});
+
+	for(int i = 0; i<t; ++i) std::cout << queries[i].a << std::endl;
 }

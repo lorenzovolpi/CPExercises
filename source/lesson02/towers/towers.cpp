@@ -59,27 +59,19 @@ void towers_v2(std::vector<int> vect)
 
 int main()
 {
-	int test_cases = 0;
-	std::cin >> test_cases;
-
 	std::vector<int> vect;
+	int n = 0;
+	std::cin >> n;
+	vect.reserve(n);
 
-	for (int i = 0; i < test_cases; ++i)
+	for (int j = 0; j < n; ++j)
 	{
-		int n = 0;
-		std::cin >> n;
-		vect.reserve(n);
-
-		for (int j = 0; j < n; ++j)
-		{
-			int x = 0;
-			std::cin >> x;
-			vect.push_back(x);
-		}
-
-		towers_v1(vect);
-		towers_v2(vect);
-
-		vect.clear();
+		int x = 0;
+		std::cin >> x;
+		vect.push_back(x);
 	}
+
+	towers_v1(vect);
+	//towers_v2(vect);
+
 }
