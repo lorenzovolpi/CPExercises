@@ -6,7 +6,7 @@ struct cube
 {
 	int i, v, h;
 
-	cube(int index, int value) : i(index), v(value), h(1){}
+	cube(int index, int value) : i(index), v(value), h(0){}
 };
 
 int main()
@@ -28,26 +28,49 @@ int main()
 			return c1.v > c2.v;
 		});
 
-	std::vector<cube> h1, h2;
-	h1.reserve(n);
-	h2.reserve(n);
-	for (int i = 0; i < 2 * n; i++)
+	int c = 1, eqc = 0, h1 = 0, h2 = 0;
+	for (int i = 0, h = -1; i < 2 * n; i++)
 	{
-		int h = (i % 2) + 1;
-		arr[i].h = h;
-
-		if (h == 1) h1.push_back(arr[i]);
-		else h2.push_back(arr[i]);
+		if(i > 0) {
+			if(arr[i].v == arr[i - 1].v) {
+				if(eqc == 0) {
+					c++;
+					eqc++;
+					arr[i].h = (++h % 2) + 1;
+					if((h % 2) + 1 == 1) h1++;
+					else h2++;
+				}
+			}
+			else {
+				eqc = 0;
+				c++;
+				arr[i].h = (++h % 2) + 1;
+				if((h % 2) + 1 == 1) h1++;
+				else h2++;
+			}
+		} else {
+			arr[i].h = (++h % 2) + 1;
+			if((h % 2) + 1 == 1) h1++;
+			else h2++;
+		}
+		
 	}
 
-	int c1 = 1, c2 = 1;
-	for (int i = 0; i < n; i++)
-	{
-		if (i > 0 && h1[i].v != h1[i - 1].v) c1++;
-		if (i > 0 && h2[i].v != h2[i - 1].v) c2++;
+	for(int i = 0; i<2*n; ++i) {
+		if(arr[i].h == 0) {
+			if(h2 < n) {
+				arr[i].h = 2;
+				h2++;
+			} else if(h1 < n) {
+				arr[i].h = 1;
+				h1++;
+			} else {
+				break;
+			}
+		}
 	}
 
-	std::cout << c1 * c2 << std::endl;
+	std::cout << (c/2)*(c - c/2) << std::endl;
 
 	std::sort(arr.begin(), arr.end(), [](cube c1, cube c2)
 		{

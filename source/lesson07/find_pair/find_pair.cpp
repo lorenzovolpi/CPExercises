@@ -2,39 +2,39 @@
 #include <vector>
 #include <algorithm>
 
-struct pair{
-	int a, b;
-
-	pair(int a, int b) : a(a), b(b) {}
-};
 
 int main()
 {
-	int n, k;
+	int64_t n, k;
 	std::cin >> n;
 	std::cin >> k;
-	std::vector<int> arr;
+	std::vector<int64_t> arr;
 	arr.reserve(n);
 
-	for (int i = 0; i < n; i++)
+	for (int64_t i = 0; i < n; i++)
 	{
-		int x = 0;
+		int64_t x = 0;
 		std::cin >> x;
 		arr.push_back(x);
 	}
 
-	std::vector<pair> ps;
-	for(int i = 0; i<n; ++i) {
-		for(int j = 0; j<n; ++j) {
-			ps.emplace_back(arr[i], arr[j]);
-		}
-	}
-
-	std::sort(ps.begin(), ps.end(), [](pair p1, pair p2) {
-		return p1.a == p2.a ? p1.b < p2.b : p1.a < p2.a;
-	});
+	std::sort(arr.begin(), arr.end(), [](int64_t a, int64_t b) { return a < b; });
 
 	--k;
+	int64_t r1 = arr[k / n];
+	int64_t before = 0;
+	for(int64_t i = 0; i<n; ++i) {
+		if(arr[i] < r1) before++;
+		else break;
+	}
 
-	std::cout << ps[k].a << " " << ps[k].b << std::endl;
+	int64_t eq = 0;
+	for(int64_t i = 0; i<n; ++i) {
+		if(arr[i] == r1) eq++;
+		else if(arr[i] > r1) break;
+	}
+
+	int64_t r2 = arr[(k - before * n) / eq];
+
+	std::cout << r1 << " " << r2 << std::endl;
 }
