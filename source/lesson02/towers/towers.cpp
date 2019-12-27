@@ -12,18 +12,17 @@ const int MAX_VALUE = 1000;
 */
 void towers_v1(std::vector<int> vect) 
 {
-	int tows[MAX_VALUE + 1];
-	for (int i = 0; i < MAX_VALUE; ++i) tows[i] = 0;
+	std::vector<int> tows(MAX_VALUE + 1, 0);
 	int num = 0, max = 0;
 
-	for(auto it = vect.begin(); it!= vect.end(); ++it)
+	for(int i = 0; i<vect.size(); ++i)
 	{
-		if (tows[*it] == 0) num++;
-		tows[*it]++;
-		if (tows[*it] > max) max = tows[*it];
+		if (tows[vect[i]] == 0) num++;
+		tows[vect[i]]++;
+		if (tows[vect[i]] > max) max = tows[vect[i]];
 	}
 
-	std::cout << max << " " << num << "\n";
+	std::cout << max << " " << num << std::endl;
 
 }
 
@@ -72,6 +71,5 @@ int main()
 	}
 
 	towers_v1(vect);
-	//towers_v2(vect);
 
 }
