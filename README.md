@@ -26,7 +26,7 @@ This repository collects solutions to problems from [Competitive Programming and
 |        | [Little girl and maximum sum](http://codeforces.com/problemset/problem/276/C?locale=en) | [little_girl_and_maximum_sum.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson06/little_girl_and_maximum_sum/little_girl_and_maximum_sum.cpp) | Accepted |
 | **07** - 07/10/2019 | [Megacity](http://codeforces.com/problemset/problem/424/B?locale=en) | [megacity.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson07/megacity/megacity.cpp) | Accepted |
 |        | [Find pair](http://codeforces.com/problemset/problem/160/C?locale=en) | [find_pair.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson07/find_pair/find_pair.cpp) | Accepted |
-|        | [Two heaps](http://codeforces.com/problemset/problem/353/B?locale=en) | [two_heaps.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson07/two_heaps/two_heaps.cpp) | ? |
+|        | [Two heaps](http://codeforces.com/problemset/problem/353/B?locale=en) | [two_heaps.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson07/two_heaps/two_heaps.cpp) | Accepted |
 | **08** - 08/10/2019 |  |  |
 | **09** - 14/10/2019 | [Update the array](http://www.spoj.com/problems/UPDATEIT/) | [update_the_array.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson09/update_the_array/update_the_array.cpp) | Time limit exceeded |
 | **10** - 15/10/2019 | [Nested segments](http://codeforces.com/problemset/problem/652/D?locale=en) | [nested_segments.cpp](https://github.com/lorenzovolpi/CPExercises/blob/master/source/lesson10/nested_segments/nested_segments.cpp) | Accepted |
