@@ -5,156 +5,89 @@
 #include <algorithm>
 
 
-class bintree
+struct bst
 {
-private:
-
 	int v;
-	bintree* l;
-	bintree* r;
-	bintree* p;
+	bst *l, *r, *p;
 
-protected:
+	bst(int value) : v(value), l(NULL), r(NULL), p(NULL) {}
+	bst(int value, bst* parent) : v(value), l(nullptr), r(nullptr), p(parent) {}
+	bst(int value, bst* left, bst* right, bst* parent) : v(value), l(left), r(right), p(parent) {}
 
-	void setLeft(bintree* left);
-	void setRight(bintree* right);
-	void setParent(bintree* parent);
+	bst* bsearch(int value){
+		if (this->v == value) return this;
+		if (value < this->v)
+		{
+			if (this->l == NULL) return NULL;
+			else this->l->bsearch(value);
+		}
+		if (value > this->v)
+		{
+			if (this->r == NULL) return NULL;
+			else return this->r->bsearch(value);
+		}
+	}
 
-public:
-	int getValue();
-	bintree* getLeft();
-	bintree* getRight();
-	bintree* getParent();
-
-	void setValue(int value);
-
-	bintree(int value);
-	bintree(int value, bintree* parent);
-	bintree(int value, bintree* left, bintree* right, bintree* parent);
-
-	virtual bintree* search(int value);
-
-	void add(int parent, int child, const std::string& pos);
-
-	int maxPathSum(int& mtl);
-
-	void inorderTraversal(std::function<void(bintree*)> fun);
-
-};
-
-
-class bst : public bintree
-{
-public:
-
-	bst(int value);
-	bst(int value, bst* parent);
-	bst(int value, bst* left, bst* right, bst* parent);
-
-	bst* getLeft();
-	bst* getRight();
-	bst* getParent();
-
-	bintree* search(int value);
+	bst* search(int value) {
+		if (this->v == value) return this;
+		bst* res = this->l == NULL ? NULL : this->l->search(value);
+		if(res == NULL) res = this->r == NULL ? NULL : this-> r->search(value);
+		return res;
+	}
 	
-	using bintree::add;
+	void add(bst* child) {
+		if (child->v > this->v)
+		{
+			if (this->r == NULL)
+			{
+				this->r = child;
+				child->p = this;
+			}
+			else
+			{
+				this->r->add(child);
+			}
+		}
 
-	void add(bst* child);
+		if (child->v < this->v)
+		{
+			if (this->l == NULL)
+			{
+				this->l = child;
+				child->p = this;
+			}
+			else 
+			{
+				this->l->add(child);
+			}
+		}
 
-	bool checkBst(int& last);
+		return;
+	}
 
-	static bst* buildFromPreorder(bst* root, std::vector<int> nums, int f, int l);
+	void add(int ip, int ic, const std::string& pos){
+		bst* parent = this->search(ip);
+
+		if (parent == NULL) return;
+
+		bst* node = new bst(ic, parent);
+		if (pos.compare("R") == 0) { parent->r = node; }
+		if (pos.compare("L") == 0) { parent->l = node; }
+
+		return;
+	}
 
 };
 
-bst::bst(int value) : bintree(value) {};
-
-bst::bst(int value, bst* parent) : bintree(value, parent) {};
-
-bst::bst(int value, bst* left, bst* right, bst* parent) : bintree(value, left, right, parent) {};
-
-bst* bst::getLeft() { return (bst*)bintree::getLeft(); }
-
-bst* bst::getRight() { return (bst*)bintree::getRight(); }
-
-bst* bst::getParent() { return (bst*)bintree::getParent(); }
-
-bintree* bst::search(int value)
-{
-	if (this->getValue() == value) return this;
-	if (value < this->getValue())
-	{
-		if (this->getLeft() == NULL) return NULL;
-		else this->getLeft()->search(value);
-	}
-	if (value > this->getValue())
-	{
-		if (this->getRight() == NULL) return NULL;
-		else return this->getRight()->search(value);
-	}
-}
-
-void bst::add(bst* child)
-{
-	if (child->getValue() > this->getValue())
-	{
-		if (this->getRight() == NULL)
-		{
-			this->setRight(child);
-			child->setParent(this);
-		}
-		else
-		{
-			this->getRight()->add(child);
-		}
-	}
-
-	if (child->getValue() < this->getValue())
-	{
-		if (this->getLeft() == NULL)
-		{
-			this->setLeft(child);
-			child->setParent(this);
-		}
-		else 
-		{
-			this->getLeft()->add(child);
-		}
-	}
-
-	return;
-}
-
-bool bst::checkBst(int& last)
-{
+bool check_bst(bst* root, int& last){
 	bool res = true;
 
-	res = res & (this->getLeft() == NULL ? true : this->getLeft()->checkBst(last));
-	if (this->getValue() < last) res = false;
-	last = this->getValue();
-	res = res & (this->getRight() == NULL ? true : this->getRight()->checkBst(last));
+	res = res && (root->l == NULL ? true : check_bst(root->l, last));
+	if (root->v < last) res = false;
+	last = root->v;
+	res = res && (root->r == NULL ? true : check_bst(root->r, last));
 
 	return res;
-}
-
-bst* bst::buildFromPreorder(bst* root, std::vector<int> nums, int f, int l)
-{
-	if (root == NULL) root = new bst(nums[f]);
-
-	int lf = f + 1, ll = f, rf = f + 1, rl = f;
-
-	for (int i = lf; i <= l && nums[i] < nums[f]; i++) { ll = i; }
-
-	rf = ll + 1;
-	rl = l;
-
-	if (lf <= ll) root->setLeft(new bst(nums[lf], NULL, NULL, root));
-	if (rf <= rl) root->setRight(new bst(nums[rf], NULL, NULL, root));
-
-	if (root->getLeft() != NULL) bst::buildFromPreorder(root->getLeft(), nums, lf, ll);
-	if (root->getRight() != NULL) bst::buildFromPreorder(root->getRight(), nums, rf, rl);
-
-	return root;
 }
 
 int main()
@@ -183,7 +116,7 @@ int main()
 		}
 
 		int last = INT_MIN;
-		if (root->checkBst(last)) std::cout << 1;
+		if (check_bst(root, last)) std::cout << 1;
 		else std::cout << 0;
 
 		std::cout << std::endl;

@@ -2,48 +2,21 @@
 #include <vector>
 #include <cmath>
 
-class node {
-private:
-
+struct node {
 	node* p;
-	int val, pi;
+	int rank;
 	std::vector<node*> children;
 
-public:
-	
-	node() : p(NULL), val(-1), pi(0) {};
-
-	node(int value, int parent_index) : p(NULL), val(value), pi(parent_index) {};
-	
-	int get_rank() { return this->val; }
-
-	int get_parent_index() { return this->pi; }
-
-	void set_parent(node* parent) 
-	{
-		this->p = parent;
-	}
-
-	std::vector<node*> get_children()
-	{
-		return this->children;
-	}
-
-	void add_child(node* child)
-	{
-		children.push_back(child);
-	}
-
+	node(int rank) : p(NULL), rank(rank) {};
 };
 
 int sqr(int x) { return pow(x, 2); }
 
 std::vector<int> sieve_of_eratosthenes(int n) 
 {
-	std::vector<int> nums;
-	nums.reserve(n + 1);
-
-	for (int i = 0; i <= n; ++i) { nums.push_back(i > 1 ? 1 : 0); }
+	std::vector<int> nums(n+1, 1);
+	nums[0] = 0;
+	nums[1] = 0;
 
 	int p = 2;
 	while (sqr(p) <= n) 
@@ -56,45 +29,18 @@ std::vector<int> sieve_of_eratosthenes(int n)
 		for (++p; nums[p] == 0; ++p) {}
 	}
 
-	std::vector<int> res;
-	for (int i = 0; i <= n; ++i)
-	{
-		if (nums[i] == 1) res.push_back(i);
-	}
-
-	return res;
-}
-
-int binary_search(const std::vector<int>& vec, int f, int l, int n)
-{
-	if (f > l) return 0;
-
-	int h = f + ((l - f) / 2);
-
-	if (n < vec[h]) return binary_search(vec, f, h - 1, n);
-	if (n > vec[h]) return binary_search(vec, h + 1, l, n);
-	if (n == vec[h]) return 1;
-}
-
-int is_prime(const std::vector<int>& primes, int n)
-{
-	return binary_search(primes, 0, primes.size() - 1, n);
+	return nums;
 }
 
 int blacklist(node* root, int depth, const std::vector<int>& primes)
 {
 	int bls = 0;
 
-	if (depth > 0) 
-	{
-		bls += is_prime(primes, root->get_rank() + depth);
-	}
+	bls += depth > 0 ? primes[root->rank + depth] : 0;
 
-	std::vector<node*> children = root->get_children();
-	++depth;
-	for (int i = 0; i<children.size(); ++i)
+	for (int i = 0; i<root->children.size(); ++i)
 	{
-		bls += blacklist(children[i], depth, primes);
+		bls += blacklist(root->children[i], depth + 1, primes);
 	}
 
 	return bls;
@@ -114,32 +60,21 @@ int main()
 
 		vec.reserve(n);
 
-		for (int j = 1; j <= n; ++j)
+		for (int j = 1; j <= n; ++j) vec.push_back(new node(j));
+		for (int j = 0; j < n; ++j)
 		{
 			int x = 0;
 			std::cin >> x;
-			node* nd = new node(j, x);
-			vec.push_back(nd);
+			if(x != 0) {
+				vec[j]->p = vec[x - 1];
+				vec[x-1]->children.push_back(vec[j]);
+			}
 		}
 
 		node* root = NULL;
+		for (int j = 0; j < n; ++j) if(vec[j]->p == NULL) root = vec[j];
 
-		for (int j = 0; j < n; ++j)
-		{
-			int pi = vec[j]->get_parent_index() - 1;
-			if (pi >= 0) 
-			{
-				node* parent = vec[pi];
-				vec[j]->set_parent(parent);
-				parent->add_child(vec[j]);
-			}
-			else
-			{
-				root = vec[j];
-			}
-		}
-
-		std::vector<int> primes = sieve_of_eratosthenes(n);
+		std::vector<int> primes = sieve_of_eratosthenes(2*n);
 		int bls = blacklist(root, 0, primes);
 		std::cout << bls << std::endl;
 		vec.clear();

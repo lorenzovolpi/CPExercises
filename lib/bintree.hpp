@@ -1,3 +1,6 @@
+#ifndef __BINTREE_HPP
+#define __BINTREE_HPP
+
 #include <iostream>
 #include <vector>
 #include <climits>
@@ -53,54 +56,4 @@ struct bintree
 
 };
 
-int max3(int a, int b, int c)
-{
-	return a > b ? (a > c ? a : c) : (b > c ? b : c);
-}
-
-int max_path_sum(bintree* root, int& mtl) {
-	int lmtl = 0, rmtl = 0;
-	int lmps = INT_MIN, rmps = INT_MIN;
-	int mps = INT_MIN;
-
-	if (root->l != NULL) lmps = max_path_sum(root->l, lmtl);
-	if (root->r != NULL) rmps = max_path_sum(root->r, rmtl);
-
-	mps = max3(root->v + lmtl + rmtl, lmps, rmps);
-
-	mtl = root->v + std::max(lmtl, rmtl);
-
-	return mps;
-}
-
-int main()
-{
-	int test_cases = 0;
-	std::cin >> test_cases;
-
-	for (int i = 0; i < test_cases; ++i)
-	{
-		int n = 0;
-		std::cin >> n;
-		bintree* root = NULL;
-		for (int j = 0; j < n; ++j)
-		{
-			int ip, ic;
-			std::string pos;
-
-			std::cin >> ip;
-			std::cin >> ic;
-			std::cin >> pos;
-
-			if (root == NULL) root = new bintree(ip);
-
-			root->add(ip, ic, pos);
-		}
-
-		int mtl = 0, mps = 0;
-
-		mps = max_path_sum(root, mtl);
-
-		std::cout << mps << std::endl;
-	}
-}
+#endif
