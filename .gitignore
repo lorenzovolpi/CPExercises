@@ -9,3 +9,5 @@ source/lesson*/*/Makefile
 source/lesson*/Makefile
 exams/*/data
 exams/*/.data
+exams/*/bin
+exams/*/bino
