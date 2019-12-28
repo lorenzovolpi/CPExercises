@@ -7,3 +7,5 @@ source/lesson*/*/Debug*
 source/lesson*/*/bin*
 source/lesson*/*/Makefile
 source/lesson*/Makefile
+exams/*/data
+exams/*/.data
