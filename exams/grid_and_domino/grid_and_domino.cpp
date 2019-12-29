@@ -25,7 +25,7 @@ matrix<int> build_subsquare(const matrix<char> &chart, int h, int w) {
 
     for(int i = 1; i<h; ++i) {
         for(int j = 1; j<w; ++j) {
-            int val = subsquare[i-1][j] + subsquare[i][j-1];
+            int val = subsquare[i-1][j] + subsquare[i][j-1] - subsquare[i-1][j-1];
             if(chart[i][j] == '.') {
                 if(chart[i-1][j] == '.') val++;
                 if(chart[i][j-1] == '.') val++;
@@ -35,6 +35,32 @@ matrix<int> build_subsquare(const matrix<char> &chart, int h, int w) {
     }
 
     return subsquare;
+}
+
+matrix<int> build_subrow(const matrix<char> &chart, int h, int w) {
+    matrix<int> subrow(h, std::vector<int>(w, 0));
+
+    for(int i=0; i<h; ++i) {
+        for(int j = 1; j<w; ++j) {
+            if(chart[i][j] == '.' && chart[i][j-1] == '.') subrow[i][j] = subrow[i][j-1] + 1;
+            else subrow[i][j] = subrow[i][j-1];
+        }
+    }
+
+    return subrow;
+}
+
+matrix<int> build_subcolumn(const matrix<char> &chart, int h, int w) {
+    matrix<int> subcolumn(h, std::vector<int>(w, 0));
+
+    for(int j=0; j<w; ++j) {
+        for(int i = 1; i<h; ++i) {
+            if(chart[i][j] == '.' && chart[i-1][j] == '.') subcolumn[i][j] = subcolumn[i-1][j] + 1;
+            else subcolumn[i][j] = subcolumn[i-1][j];
+        }
+    }
+
+    return subcolumn;
 }
 
 int main(int argc, char** argv) {
@@ -67,7 +93,20 @@ int main(int argc, char** argv) {
     in.close();
 
     matrix<int> subsquare = build_subsquare(chart, h, w);
+    matrix<int> subrow = build_subrow(chart, h, w);
+    matrix<int> subcolumn = build_subcolumn(chart, h, w);
 
-    
+    std::vector<int> results(q, 0);
+    for(int i = 0; i<q; ++i) {
+        int res = subsquare[qs[i].r2][qs[i].c2];
+        res -= subsquare[qs[i].r1][qs[i].c2];
+        res -= subsquare[qs[i].r2][qs[i].c1];
+        res += subsquare[qs[i].r1][qs[i].c1];
+        res += subrow[qs[i].r1][qs[i].c2] - subrow[qs[i].r1][qs[i].c1];
+        res += subcolumn[qs[i].r2][qs[i].c1] - subcolumn[qs[i].r1][qs[i].c1];
 
+        results[i] = res;
+    }
+
+    for(int i = 0; i<q; ++i) std::cout << results[i] << std::endl;
 }
