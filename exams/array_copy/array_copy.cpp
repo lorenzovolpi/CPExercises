@@ -85,7 +85,6 @@ int main(int argc, char** argv) {
     std::ifstream in;
     in.open(argv[1]);
 
-
     int n, m;
     in >> n;
     in >> m;
@@ -118,6 +117,8 @@ int main(int argc, char** argv) {
             results.push_back(cp.read(k));
         }
     }
+
+    in.close();
 
     for(int i = 0; i<results.size(); ++i) std::cout << results[i] << std::endl;
 }
