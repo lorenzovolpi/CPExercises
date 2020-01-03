@@ -6,14 +6,14 @@
 #include <climits>
 #include <functional>
 #include <cmath>
+#include <chrono>
 
 struct segtree{
     std::vector<int64_t> tree, lazy;
     int64_t n;
     int64_t neutral;
-    std::function<int64_t(int64_t, int64_t)> merge;
 
-    segtree(int64_t n, int64_t neutral, std::function<int64_t(int64_t, int64_t)> merge) : neutral(neutral), merge(merge) {
+    segtree(int64_t n, int64_t neutral) : neutral(neutral){
         int64_t lim = bound2pow(n);
         this->n = lim;
         tree.assign((2*lim) - 1, neutral);
@@ -21,9 +21,9 @@ struct segtree{
         make_tree(0, 0, lim - 1);
     }
 
-    segtree(int64_t n) : segtree(n, 0, default_merge) {}
+    segtree(int64_t n) : segtree(n, 0) {}
 
-    segtree(std::vector<int64_t> v, int64_t neutral, std::function<int64_t(int64_t, int64_t)> merge) : neutral(neutral), merge(merge) {
+    segtree(std::vector<int64_t> v, int64_t neutral) : neutral(neutral){
         int64_t lim = bound2pow(v.size());
         this->n = lim;
         tree.assign((2*lim) - 1, neutral);
@@ -32,17 +32,17 @@ struct segtree{
         make_tree(0, 0, lim - 1);
     }
 
-    segtree(std::vector<int64_t> v) : segtree(v, 0, default_merge) {}
+    segtree(std::vector<int64_t> v) : segtree(v, 0) {}
 
     int make_tree(int64_t i, int64_t lb, int64_t rb) {
         if(lb == rb) return tree[i];
         
         int64_t mid = lb + (rb - lb + 1) / 2;
         
-        int64_t mkl = make_tree(left(i), lb, mid - 1);
-        int64_t mkr = make_tree(right(i), mid, rb);
+        int64_t mkl = make_tree((i << 1) + 1, lb, mid - 1);
+        int64_t mkr = make_tree((i << 1) + 2, mid, rb);
 
-        tree[i] = this->merge(mkl, mkr);
+        tree[i] = std::min(mkl, mkr);
 
         return tree[i];
     }
@@ -65,7 +65,7 @@ struct segtree{
         else if(kl <= lb && rb <= kr) return tree[i];
         else {
             int64_t mid = lb + (rb - lb + 1) / 2;
-            return this->merge(util_sum(kl, kr, left(i), lb, mid - 1), util_sum(kl, kr, right(i), mid, rb));
+            return std::min(util_sum(kl, kr, (i << 1) + 1, lb, mid - 1), util_sum(kl, kr, (i << 1) + 2, mid, rb));
         }
     }
 
@@ -81,8 +81,8 @@ struct segtree{
             tree[i] += v;
             if(lb < rb) {
                 int64_t mid = lb + (rb - lb + 1) / 2;
-                util_add(k, v, left(i), lb, mid - 1);
-                util_add(k, v, right(i), mid, rb);
+                util_add(k, v, (i << 1) + 1, lb, mid - 1);
+                util_add(k, v, (i << 1) + 2, mid, rb);
             }
         }
     }
@@ -91,8 +91,8 @@ struct segtree{
 		if(lazy[i] != 0) {
 			tree[i] += lazy[i];
 			if(lb < rb) {
-				lazy[left(i)] += lazy[i];
-				lazy[right(i)] += lazy[i];
+				lazy[(i << 1) + 1] += lazy[i];
+				lazy[(i << 1) + 2] += lazy[i];
 			}
 			lazy[i] = 0;
 		}
@@ -103,12 +103,12 @@ struct segtree{
 		if(kl <= lb && rb <= kr) {
 			tree[i] += v;
 			if(lb < rb) {
-				lazy[left(i)] += v;
-				lazy[right(i)] += v;
+				lazy[(i << 1) + 1] += v;
+				lazy[(i << 1) + 2] += v;
 			}
 		} else if(kl <= rb && kr >= lb) {
 			int64_t mid = lb + (rb - lb + 1) / 2;
-			tree[i] = this->merge(util_range_update(kl, kr, v, left(i), lb, mid - 1), util_range_update(kl, kr, v, right(i), mid, rb));
+			tree[i] = std::min(util_range_update(kl, kr, v, (i << 1) + 1, lb, mid - 1), util_range_update(kl, kr, v, (i << 1) + 2, mid, rb));
 		}
 
 		return tree[i];
@@ -120,14 +120,6 @@ struct segtree{
 
 		util_range_update(kl, kr, v, 0, 0, this->n - 1);
 	}
-
-    static int64_t default_merge(int64_t v1, int64_t v2) { return v1 + v2; }
-
-    static int64_t left(int64_t i) { return i*2 + 1; }
-
-    static int64_t right(int64_t i) { return i*2 + 2; }
-
-    static int64_t parent(int64_t i) { return (i-1) / 2; }
 
     static int64_t bound2pow(int64_t n) {
         int64_t k = 0;
@@ -142,20 +134,18 @@ int main()
 	int64_t n = 0;
 	std::cin >> n;
 
-	std::vector<int64_t> arr;
-	arr.reserve(n);
+	
+
+	std::vector<int64_t> arr(n, 0);
 
 	for (int64_t i = 0; i < n; i++)
 	{
 		int64_t x = 0;
 		std::cin >> x;
-		arr.push_back(x);
+		arr[i] = x;
 	}
 
-	segtree st(arr, INT64_MAX, [](int64_t v1, int64_t v2) 
-		{
-			return std::min(v1, v2);
-		});
+	segtree st(arr, INT64_MAX);
 
 	int64_t q = 0;
 	std::cin >> q;
@@ -177,7 +167,7 @@ int main()
 		{
 			int64_t j = query[0], k = query[1];
 			int64_t res;
-			if (j > k) res = std::min(st.sum(j, arr.size() - 1), st.sum(0, k));
+			if (j > k) res = std::min(st.util_sum(j, arr.size() - 1, 0, 0, st.n - 1), st.util_sum(0, k, 0, 0, st.n - 1));
 			else res = st.sum(j, k);
 
 			std::cout << res << std::endl;
@@ -188,8 +178,8 @@ int main()
 			int64_t res;
 			if (j > k)
 			{
-				st.range_update(j, arr.size() - 1, query[2]);
-				st.range_update(0, k, query[2]);
+				st.util_range_update(j, arr.size() - 1, query[2], 0, 0, st.n - 1);
+				st.util_range_update(0, k, query[2], 0, 0, st.n - 1);
 			}
 			else st.range_update(j, k, query[2]);
 		}
