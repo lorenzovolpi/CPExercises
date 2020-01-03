@@ -64,7 +64,7 @@ int main()
 		{
 			int64_t x;
 			std::cin >> x;
-			std::cout << "Output: " << ft.sum(x) << std::endl;
+			std::cout << ft.sum(x) << std::endl;
 		}
 	}
 

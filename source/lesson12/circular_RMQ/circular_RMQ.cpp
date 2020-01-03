@@ -139,15 +139,15 @@ struct segtree{
 
 int main()
 {
-	int n = 0;
+	int64_t n = 0;
 	std::cin >> n;
 
 	std::vector<int64_t> arr;
 	arr.reserve(n);
 
-	for (int i = 0; i < n; i++)
+	for (int64_t i = 0; i < n; i++)
 	{
-		int x = 0;
+		int64_t x = 0;
 		std::cin >> x;
 		arr.push_back(x);
 	}
@@ -157,14 +157,14 @@ int main()
 			return std::min(v1, v2);
 		});
 
-	int q = 0;
+	int64_t q = 0;
 	std::cin >> q;
 	std::string s;
 	std::getline(std::cin, s);
-	int query[4];
-	for (int i = 0; i < q; i++)
+	int64_t query[4];
+	for (int64_t i = 0; i < q; i++)
 	{
-		int count = 0;
+		int64_t count = 0;
 		std::getline(std::cin, s);
 		std::istringstream iss(s);
 		while (!iss.eof())
@@ -175,8 +175,8 @@ int main()
 
 		if (count == 2)
 		{
-			int j = query[0], k = query[1];
-			int res;
+			int64_t j = query[0], k = query[1];
+			int64_t res;
 			if (j > k) res = std::min(st.sum(j, arr.size() - 1), st.sum(0, k));
 			else res = st.sum(j, k);
 
@@ -184,8 +184,8 @@ int main()
 		}
 		if (count == 3)
 		{
-			int j = query[0], k = query[1];
-			int res;
+			int64_t j = query[0], k = query[1];
+			int64_t res;
 			if (j > k)
 			{
 				st.range_update(j, arr.size() - 1, query[2]);
