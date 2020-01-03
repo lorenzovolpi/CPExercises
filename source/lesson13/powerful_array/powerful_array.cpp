@@ -6,46 +6,39 @@
 
 struct query
 {
-	int l, r, b, i, a = 0;
+	int l, r, b, i = 0;
+	int64_t a = 0;
 	query(int l, int r, int n, int i) : l(l), r(r), i(i) 
 	{
 		double _b = (double)l / sqrt(n);
-		b = _b;
+		b = (int)_b;
 	}
 };
 
-int sqr(int v)
+int64_t sqr(int v)
 {
 	return std::pow(v, 2);
 }
 
 int max(const std::vector<int>& arr)
 {
-	int max = INT_MIN;
+	int max = 0;
 	for (int i = 0; i < arr.size(); ++i) if (arr[i] > max) max = arr[i];
 	return max;
 }
 
-void add(std::vector<int>& count, int& answer, int val)
+void add(std::vector<int>& count, int64_t& answer, int val)
 {
-	answer -= count[val];
-	count[val] /= val;
-	count[val] = std::sqrt(count[val]);
+	answer -= (int64_t)(sqr(count[val]) * (int64_t)val);
 	count[val]++;
-	count[val] = sqr(count[val]);
-	count[val] *= val;
-	answer += count[val];
+	answer += (int64_t)(sqr(count[val]) * (int64_t)val);
 }
 
-void remove(std::vector<int>& count, int& answer, int val)
+void remove(std::vector<int>& count, int64_t& answer, int val)
 {
-	answer -= count[val];
-	count[val] /= val;
-	count[val] = std::sqrt(count[val]);
+	answer -= (int64_t)(sqr(count[val]) * (int64_t)val);
 	count[val]--;
-	count[val] = sqr(count[val]);
-	count[val] *= val;
-	answer += count[val];
+	answer += (int64_t)(sqr(count[val]) * (int64_t)val);
 }
 
 int main()
@@ -53,19 +46,19 @@ int main()
 	int n, t;
 	std::cin >> n;
 	std::cin >> t;
-	std::vector<int> arr;
+	std::vector<int> arr(n, 0);
 	arr.reserve(n);
 	for (int i = 0; i < n; ++i)
 	{
 		int x;
 		std::cin >> x;
-		arr.push_back(x);
+		arr[i] = x;
 	}
 
 	int m = max(arr);
 	std::vector<int> count(m + 1, 0);
-	count[arr[0]] += arr[0];
-	int answer = arr[0];
+	count[arr[0]] += 1;
+	int64_t answer = arr[0];
 
 	std::vector<query> queries;
 	queries.reserve(t);
