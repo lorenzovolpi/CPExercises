@@ -2,6 +2,23 @@
 #include <vector>
 #include <algorithm>
 
+/*
+	The algorithm starts normalizing the values of the original array. Then two new arrays are 
+	computed: occ and suffc. Each index of occ corresponds to an element of arr and occ[arr[i]] 
+	stores the number of occurrences of arr[i] in arr. While computing occ, suffc is computed, 
+	scanning the array backwards. suffc[i] stores the number of occurrences of arr[i] in the 
+	suffix of arr starting at position i. In other words, for each i suffc stores the value of 
+	the function f(i, n, ai). Then a BIT is populated. For each index i from 0 to n-1 an add 
+	operation is performed on the BIT at index suffc[i] with value 1. In other words the BIT 
+	stores the prefix sum of the possible suffc values. Now, scanning the array in natural 
+	order, we compute for each index i the number of elements in the prefix ending with i
+	which are equal to ai, keeping an ord array as before. So, at each step we compute the
+	function f(1, i, ai). Now we need the number of suffixes with a value less than f(1, i, ai)
+	starting after i. To have this value at each step we decrease the value of the position 
+	suffc[i] in the BIT by 1 and then we compute BIT.sum(f(1, i, ai) - 1). The algorithm
+	runs in O(nlogn).
+*/
+
 struct sorter
 {
 	int64_t i, v, r=0;

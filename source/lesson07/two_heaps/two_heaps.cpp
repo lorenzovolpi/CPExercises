@@ -2,6 +2,20 @@
 #include <vector>
 #include <algorithm>
 
+/*
+	The idea is to firstly sort all the elements by decreasing value. Then
+	Each element is computed and to each element is associated h1 or h2, in 
+	alternating fashion. If a value is present more than twice, only the first 
+	two elements with same value are considered in this prosess, leaving all 
+	other elements outside of the two heaps. A variable c is kept counting
+	all elements which contribute to generate distinct final numbers from
+	the two heaps. Now the number of different possible numbers is printed
+	and the remaining elements are assigned to the two heaps, until h1 and
+	h2 are equal to n. All the elements are now sorted back to original order
+	and the values of the corresponding heaps are printed. The algorithm runs in
+	O(nlogn).
+*/
+
 struct cube
 {
 	int i, v, h;

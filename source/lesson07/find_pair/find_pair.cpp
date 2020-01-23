@@ -2,7 +2,13 @@
 #include <vector>
 #include <algorithm>
 
-
+/*
+	The idea to find the kth pair starts sorting the array. Then the first element of the pair is
+	computed using integral division btween k and n (the number of elements). The element at position
+	k/n is the first element of the pair (r1). Next two other values are computed: the number of elements
+	less then r1 and the number of elements equal to r1. Now we compute k' = k - before * n. The following pairs
+	are repeated eq times each, so to find r2 we want the element at position k'/eq. The cost is O(n).
+*/
 int main()
 {
 	int64_t n, k;

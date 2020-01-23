@@ -7,7 +7,6 @@
 struct query
 {
 	int l, r, b, i = 0;
-	int64_t a = 0;
 	query(int l, int r, int n, int i) : l(l), r(r), i(i) 
 	{
 		double _b = (double)l / sqrt(n);
@@ -47,6 +46,7 @@ int main()
 	std::cin >> n;
 	std::cin >> t;
 	std::vector<int> arr(n, 0);
+	std::vector<int64_t> answ(n, 0);
 	arr.reserve(n);
 	for (int i = 0; i < n; ++i)
 	{
@@ -102,14 +102,8 @@ int main()
 			add(count, answer, arr[cl]);
 		}
 
-		//std::cout << answer << std::endl;
-		queries[i].a = answer;
+		answ[queries[i].i] = answer;
 	}
 
-	std::sort(queries.begin(), queries.end(), [](query q1, query q2)
-		{
-			return q1.i < q2.i;
-		});
-
-	for(int i = 0; i<t; ++i) std::cout << queries[i].a << std::endl;
+	for(int i = 0; i<t; ++i) std::cout << answ[i] << std::endl;
 }
