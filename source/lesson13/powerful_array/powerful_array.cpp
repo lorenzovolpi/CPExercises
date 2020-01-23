@@ -4,6 +4,13 @@
 #include <cmath>
 #include <climits>
 
+/*
+	The algorithm is an application of Mo's algorithm. An array count
+	stores the number of occurrences of elements in a given subarray
+	of the original one and answer stores the sum of the requires function
+	applied to all the values of count.
+*/
+
 struct query
 {
 	int l, r, b, i = 0;

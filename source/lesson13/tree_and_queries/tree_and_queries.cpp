@@ -3,6 +3,15 @@
 #include <cmath>
 #include <algorithm>
 
+/*
+    The algorithm is an application of Mo's algorithm on trees. The buckets
+    are represented by subtrees and queries ar ordered by the position of the
+    root of each subtree in the linearized tree and by k value in decreasing 
+    order inside the same bucket. The array colormap stores the number of occurrences
+    in a given subtree for each color and ks stores for each position i the number
+    of colors occurring i times. 
+*/
+
 struct colorpos{
     int c, i;
 
