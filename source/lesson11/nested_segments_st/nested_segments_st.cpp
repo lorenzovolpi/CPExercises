@@ -5,6 +5,14 @@
 #include <cmath>
 #include <functional>
 
+/*
+    All query bounds are compressed to minimum possible values for performance. 
+    Then a segment tree is created and queries are sorted by decreasing starting bound. 
+    For each query the sum in the bit is computed for the starting bound of the 
+    query and then the bit is updated by 1 for the starting bound of the current query.
+    The time complexity is O(nlogm + nlogn) where m is the number of leaves of the segment tree.
+*/
+
 struct query
 {
 	int64_t f, l, i, n = 0;

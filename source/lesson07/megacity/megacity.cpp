@@ -3,6 +3,12 @@
 #include <vector>
 #include <algorithm>
 
+/*
+	For each city the distance from the center is computed. Then all cities are
+	sorted by distance from the center. Then the result is computed scanning the sorted array
+	until the population reaches the target. The solutions runs in o(nlogn).
+*/
+
 struct city
 {
 	int x, y, p;

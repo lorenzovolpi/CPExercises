@@ -3,6 +3,14 @@
 #include <climits>
 #include <functional>
 
+/*
+	The idea is to perform a postorder traversal. For each node perform the maximum path down to leaves
+	as the sum of current data and maximum of the maximum for left and right to subtree. For each node the
+	maximum path sum is computed as the maximum among mps of right and left subtrees and sum of current data,
+	maximum path down to leaves of left and right subtree. The cost of this algorithm is O(n).
+
+*/
+
 struct bintree
 {
 	int v;

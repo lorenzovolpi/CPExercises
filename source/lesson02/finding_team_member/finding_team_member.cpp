@@ -2,6 +2,12 @@
 #include <vector>
 #include <algorithm>
 
+/*
+	The idea is to store for each paire the relative strength, then sort the array by decreasing strength
+	and parse the array. For each pair if neither first and sacond member are already matched, match them
+	with each other. The algorithm runs in O(nlogn).
+*/
+
 struct team 
 {
 	int member1, 
@@ -23,12 +29,7 @@ std::vector<int> find_matches(std::vector<team> vect, int members)
 {
 	std::sort(vect.begin(), vect.end(), team_comp);
 
-	std::vector<int> matches;
-	matches.reserve(members);
-	for (int i = 0; i < members; ++i)
-	{
-		matches.push_back(0);
-	}
+	std::vector<int> matches(members, 0);
 
 	for (auto it = vect.begin(); it != vect.end(); ++it)
 	{

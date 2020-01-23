@@ -1,6 +1,15 @@
 #include <iostream>
 #include <vector>
 
+/*
+	The idea is to parse the array from left to right with and index i and
+	from right to left with an index j at the same time. The heights of the blocks 
+	are compared at every iteration and the smaller is considered. If the height of blocks is smaller
+	than the current level of water the difference is added to the total water trapped, 
+	otherwise the level is brought to the current height. The index just considered is increased or decreased
+	(i or j) until i is euqal to j. The algorithm runs in O(n).
+*/
+
 int trapped_spot(int val, int& level) 
 {
 	if (val > level) level = val;

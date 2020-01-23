@@ -1,6 +1,12 @@
 #include <iostream>
 #include <vector>
 
+/*
+	This solution parses the array from right to left momorizing the current max.
+	If the current element is grater than or equal to the current max it is added to 
+	the leadersand current max is updated. Laste element is always a leader. The algorithm
+	runs in O(n).
+*/
 
 void print_leaders_in_array(std::vector<int> vect) {
 

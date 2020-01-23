@@ -4,6 +4,11 @@
 #include <climits>
 #include <algorithm>
 
+/*
+	The idea of this solution is to perform an inorder traversal of the tree
+	and to keep in last the previous element in the traversal. If current element is
+	grater than last answer is false, otherwise is true. The algorithm runs in O(n).
+*/
 
 struct bst
 {

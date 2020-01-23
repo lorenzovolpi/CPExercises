@@ -1,6 +1,12 @@
 #include <iostream>
 #include <vector>
 
+/*
+	The idea is to use a bit to update the array. FOr each update value v is added
+	int he bit at position l and subtracted at position r+1. After all updates, queries 
+	are computed using the sum function of bit. The solution runs in O(ulogn + q).
+*/
+
 struct bit
 {
 	std::vector<int64_t> v;

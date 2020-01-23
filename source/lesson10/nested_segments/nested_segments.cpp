@@ -3,6 +3,14 @@
 #include <algorithm>
 #include <climits>
 
+/*
+    All query bounds are compressed to minimum possible values for performance. 
+    Then a bit is created and queries are sorted by decreasing starting bound. 
+    For each query the sum in the bit is computed for the starting bound of the 
+    query and then the bit is updated by 1 for the starting bound of the current query.
+    The time complexity is O(nlogm + nlogn) where m is the number of elements of the bit.
+*/
+
 struct bit
 {
 	std::vector<int> v;

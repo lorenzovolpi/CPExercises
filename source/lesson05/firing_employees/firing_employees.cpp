@@ -2,6 +2,12 @@
 #include <vector>
 #include <cmath>
 
+/*
+	The idea is to create the tree from the input, then perform sieve of Eratosthenes
+	and then traverse the tree blacklisting the requested employees. The cost in time is
+	dominated by the sieve, O(nloglogn)
+*/
+
 struct node {
 	node* p;
 	int rank;

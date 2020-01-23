@@ -1,10 +1,13 @@
-// largest_even_number.cpp : Questo file contiene la funzione 'main', in cui inizia e termina l'esecuzione del programma.
-//
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <functional>
+
+/*
+	This solution takes the input number, puts the smallest even digit as the least significant
+	digit in the resulting number and then sorts the others in decreasing order. The algorithm
+	runs in O(nlogn).
+*/
 
 void merge(std::vector<int>& A, int f, int half, int l, std::function<int(int, int)> compare)
 {

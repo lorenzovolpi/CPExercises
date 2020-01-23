@@ -2,6 +2,14 @@
 #include <vector>
 #include <deque>
 
+/*
+	The idea is to parse the array while keeping the last significant max values. At each iteration
+	the indexes outside of the window are popped, then the new value encountered is added to the bottom of 
+	the deque after al smaller elements are popped from the bottom. Then the current front is pushed in
+	the results vector. The algorithm runs in O(n) as each element is pushed in and popped from the deque
+	at most once.
+*/
+
 std::vector<int> maximum_subarrays(std::vector<int> vect, int k)
 {
 	std::vector<int> maximums;

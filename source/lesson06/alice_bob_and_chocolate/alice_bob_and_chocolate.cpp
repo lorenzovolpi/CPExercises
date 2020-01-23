@@ -1,6 +1,13 @@
 #include <iostream>
 #include <vector>
 
+/*
+	The idea is to scan the array of times from left to right and from right to left at the same
+	time, simulating the process of eating bars inf each direction. At each iteration the contestant
+	behind in time if brought torwards. If they are at the same time they go on together. The time 
+	complexity of the algorithm is O(n).
+*/
+
 int main()
 {
 	int n = 0;

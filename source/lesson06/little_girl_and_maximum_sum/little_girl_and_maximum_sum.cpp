@@ -2,6 +2,12 @@
 #include <vector>
 #include <algorithm>
 
+/*
+	The idea is to use prefix sums to compute the frequency with which each element is requested 
+	in following queries. The elements are sorted in decreasing order and assigned accordingly to 
+	each spot in decreasing order of frequency. The algorithm runs in O(nlogn).
+*/
+
 struct query
 {
 	int64_t s, e;

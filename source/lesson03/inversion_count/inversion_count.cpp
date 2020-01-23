@@ -1,6 +1,12 @@
 #include <iostream>
 #include <vector>
 
+/*
+	This solution uses an approach similar to merge sort. While sorting with merge sort,
+	during the merge operation, the algorithm counts the number of inversions. The cost
+	in time is the same as merge sort, O(nlogn).
+*/
+
 uint64_t invcnt_merge(std::vector<uint64_t>& A, uint64_t f, uint64_t half, uint64_t l)
 {	
 	std::vector<uint64_t> B((l-f) + 1);

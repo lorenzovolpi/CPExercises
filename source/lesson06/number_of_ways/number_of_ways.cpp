@@ -1,6 +1,14 @@
 #include <iostream>
 #include <vector>
 
+/*
+	This solution computes a suffix sum of the number of suffixes which
+	sum is equal to total sum the array divided by 3. The the array is scanned
+	from left to right and when the current prefix sum of the array is 1/3 of the total sum
+	the value of the previously computed suffix sum at position i+2 is added to the result.
+	Alforithm runs in O(n).
+*/
+
 int main()
 {
 	int64_t n = 0, sum = 0;

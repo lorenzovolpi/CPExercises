@@ -1,6 +1,12 @@
 #include <iostream>
 #include <vector>
 
+/*
+	This solution simply sums all the elements in the array of length n-1. 
+	The sums of the numbers from 1 to n minus the sum got above gives the
+	missing number. The algorithm runs in O(n).
+*/
+
 int missing_number(std::vector<int> vect)
 {
 	int n = vect.size() + 1; 

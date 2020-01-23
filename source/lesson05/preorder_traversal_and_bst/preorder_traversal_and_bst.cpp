@@ -2,6 +2,14 @@
 #include <vector>
 #include <climits>
 
+/*
+	This solution starts form the assumption that the preorder traversal given in input matches a bst. 
+	The tree is built as a bst, each subarray corresponds to a subtree an the first element is the root.
+	All element less than the root to its immediate right are considered to belong to its left subtree, 
+	the others are considered to belong to its right subtree. When the tree is built, the tree is checked.
+	The solutions runs in O(n).
+*/
+
 struct bst
 {
 	int v;

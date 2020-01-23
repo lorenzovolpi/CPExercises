@@ -8,6 +8,12 @@
 #include <cmath>
 #include <chrono>
 
+/*
+	The idea is to use a segment tree with lazy updates for range updates. Updates and
+	queries are computed as usual when bounds are between starting and ending element,
+	while are split in two when they overflow. The solution runs in O(n + mlogn).
+*/
+
 struct segtree{
     std::vector<int64_t> tree, lazy;
     int64_t n;

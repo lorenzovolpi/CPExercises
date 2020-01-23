@@ -2,6 +2,12 @@
 #include <vector>
 #include <climits>
 
+/*
+	This solution parses the array from left to right. I sums the subarray until the sum is negative. If the sum
+	becomes negative the sum starts over, because the preceding subarray of the optimal subarray must be of negative
+	sum, otherwise the optimal subarray coul be extended. The algorithm runs in O(n).
+*/
+
 int kadanes_algorithm(std::vector<int> vect) 
 {
 	int sum = 0, max = INT_MIN;
