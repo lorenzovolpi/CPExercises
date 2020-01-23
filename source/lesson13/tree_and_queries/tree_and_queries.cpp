@@ -3,17 +3,16 @@
 #include <cmath>
 #include <algorithm>
 
-struct edge{
-    int u, v;
+struct colorpos{
+    int c, i;
 
-    edge(int u, int v) : u(u), v(v) {}
+    colorpos(int c, int i) : c(c), i(i) {}
 };
 
 struct query{
-    int v, k;
-    int a = -1, i;
+    int f, k, i;
 
-    query(int v, int k, int i) : v(v), k(k), i(i) {}
+    query(int v, int k, int i) : f(v), k(k), i(i) {}
 };
 
 struct tree{
@@ -21,22 +20,27 @@ struct tree{
     int f = -1, l = -1, c = 0;
     std::vector<tree*> children;
 
-    tree(int v) : value(v) {}
+    tree(int v, int c) : value(v), c(c) {}
 
-    bool add(int p, int v) {
-        bool res = false;
-        if(this->value == p) {
-            this->children.push_back(new tree(v));
-            res = true;
-        } else {
-            for(int i = 0; i<this->children.size() && !res; ++i) {
-                res = res || this->children[i]->add(p, v);
-            }
-        }
-
-        return res;
+    void addChild(tree* c) {
+        this->children.push_back(c);
     }
 };
+
+void normalize_colors(std::vector<int>& colors) {
+    std::vector<colorpos> cp(colors.size(), colorpos(0, 0));
+    for(int i = 0; i<colors.size(); ++i) {
+        cp[i].c = colors[i];
+        cp[i].i = i;
+    }
+    std::sort(cp.begin(), cp.end(), [](colorpos cp1, colorpos cp2) {
+        return cp1.c < cp2.c;
+    });
+    colors[cp[0].i] = 1;
+    for(int i = 1; i<cp.size(); ++i) {
+        colors[cp[i].i] = cp[i-1].c == cp[i].c ? colors[cp[i-1].i] : colors[cp[i-1].i] + 1;
+    }
+}
 
 void linearize_tree(const std::vector<int>& colors, tree* root, std::vector<tree*>& lin, int& time) {
     int ri = ++time;
@@ -51,81 +55,77 @@ void linearize_tree(const std::vector<int>& colors, tree* root, std::vector<tree
     root->l = time;
 }
 
-tree* build_tree(std::vector<edge> edges) {
-    tree* root = new tree(edges[0].u);
-    for(int i = 0; i<edges.size(); ++i) root->add(edges[i].u, edges[i].v);
-
-    return root;
-}
-
 int main() {
     int n, m;
     std::cin >> n;
     std::cin >> m;
-    std::vector<int> colors;
-    std::vector<edge> edges;
+    std::vector<int> colors(n, 0);
     std::vector<query> queries;
     for(int i = 0; i < n; ++i) {
-        int x;
-        std::cin >> x;
-        colors.push_back(x);
+        std::cin >> colors[i];
     }
+    normalize_colors(colors);
+
+    std::vector<tree*> nodes(n, nullptr);
+    nodes[0] = new tree(1, colors[0]);
     for(int i = 0; i<n-1; ++i) {
         int u, v;
         std::cin >> u;
         std::cin >> v;
-        edges.emplace_back(u, v);
+        --u, --v;
+        if(nodes[u] != nullptr && nodes[v] != nullptr) {
+            nodes[u]->addChild(nodes[v]);
+        } else if(nodes[u] != nullptr && nodes[v] == nullptr) {
+            nodes[v] = new tree(v+1, colors[v]);
+            nodes[u]->addChild(nodes[v]);
+        } else if(nodes[u] == nullptr && nodes[v] != nullptr){
+            nodes[u] = new tree(u+1, colors[u]);
+            nodes[v]->addChild(nodes[u]);
+        }
     }
 
-    tree* root = build_tree(edges);
+    tree* root = nodes[0];
     std::vector<tree*> lind(n);
     int time = -1;
     linearize_tree(colors, root, lind, time);
-
-    std::vector<tree*> srtd(n, NULL);
-    for(int i = 0; i<n; ++i) {
-        srtd[(lind[i]->value) - 1] = lind[i];
-    }
 
     for(int i = 0; i<m; ++i) {
         int v, k;
         std::cin >> v;
         std::cin >> k;
 
-        queries.emplace_back(srtd[v - 1]->f, k, i);
+        queries.emplace_back(nodes[v - 1]->f, k, i);
     }
 
     std::sort(queries.begin(), queries.end(), [](query q1, query q2){
-        if(q1.v == q2.v) {
+        if(q1.f == q2.f) {
             return q1.k > q2.k;
-        } else return q1.v < q2.v;
+        } else return q1.f < q2.f;
     });
 
     int lb = -1;
-    std::vector<int> colormap(n, 0), ks(n, 0);
+    std::vector<int> colormap(n, 0), ks(n+1, 0), answ(m, 0);
     for(int i = 0; i<lind.size(); ++i) colormap[lind[i]->c]++;
 
     for(int i = 0; i<colormap.size(); ++i) ks[colormap[i]]++;
-    int sum = 0, lastk = -1;
+    int sum = 0;
     int old_f = 0, old_l = lind.size() - 1;
     for(int j = ks.size() - 1; j>=queries[0].k; --j) sum+=ks[j];
-    lastk = queries[0].k;
-    queries[0].a = sum;
+    int lastk = queries[0].k > n ? n+1 : queries[0].k;
+    answ[queries[0].i] = sum;
+
     for(int i = 1; i<queries.size(); ++i) {
-        int cf = queries[i].v, cl = lind[queries[i].v]->l;
+        int cf = queries[i].f, cl = lind[queries[i].f]->l;
         if(cf != old_f) {
-            if(old_l < cl) {
-                old_l++;
-                while(old_l <= cl) {
-                    int c = lind[old_l]->c;
-                    int oldk = colormap[c];
-                    colormap[c]++;
-                    ks[colormap[c]]++;
-                    ks[oldk]--;
-                    old_l++;
-                }
-                old_l--;
+            
+            while(old_l < cl) {
+                int c = lind[++old_l]->c;
+                int oldk = colormap[c];
+                colormap[c]++;
+                ks[colormap[c]]++;
+                ks[oldk]--;
             }
+            
             while(old_f < cf) {
                 int c = lind[old_f]->c;
                 int oldk = colormap[c];
@@ -134,6 +134,7 @@ int main() {
                 ks[oldk]--;
                 old_f++;
             }
+            
             while(old_l > cl) {
                 int c = lind[old_l]->c;
                 int oldk = colormap[c];
@@ -143,25 +144,26 @@ int main() {
                 old_l--;
             }
             sum = 0;
-            for(int j = ks.size() - 1; j>=queries[i].k; --j) sum+=ks[j];
-            lastk = queries[i].k;
-            queries[i].a = sum;
+            if(queries[i].k > n) {
+                lastk = n+1;
+            } else {
+                for(int j = ks.size() - 1; j>=queries[i].k; --j) sum+=ks[j];
+                lastk = queries[i].k;
+            }
+            answ[queries[i].i] = sum;
         } else {
             int ck = queries[i].k;
-            lastk--;
-            while(lastk >= ck) {
-                sum += ks[lastk];
-                lastk--;
+            if(ck <= n) {
+                while(lastk > ck) {
+                    sum += ks[--lastk];
+                }
             }
-            queries[i].a = sum;
+            answ[queries[i].i] = sum;
         }
     }
     
-    std::sort(queries.begin(), queries.end(), [](query q1, query q2){
-        return q1.i < q2.i;
-    });
-    
-    for(int i = 0; i<queries.size(); ++i) {
-        std::cout << queries[i].a << std::endl;
+    for(int i = 0; i<m; ++i) {
+       std::cout << answ[i] << std::endl;
     }
+    
 }
