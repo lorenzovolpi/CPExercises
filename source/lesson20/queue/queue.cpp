@@ -25,11 +25,9 @@ bool queue(std::vector<person*>& ps) {
     std::deque<int> bk;
     std::vector<person*> q(ps.size(), NULL);
 
-    int last_a = ps.size();
     for(int i = ps.size() - 1, j = ps.size() - 1; i>=0; ) {
         if(j == ps[i]->a) {
             bk.push_front(j);
-            last_a = ps[i]->a;
             q[bk.front()] = ps[i];
             bk.pop_front();
             --i; --j;

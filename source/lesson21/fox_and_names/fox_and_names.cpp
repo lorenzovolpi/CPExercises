@@ -17,9 +17,7 @@ bool alpha_dfs_visit(const std::vector<letter*>& lts, int& time, letter* l) {
     l->s = ++time;
     l->color = 1;
     bool res = true;
-    if(l->l == 'o') {
-        int x = 0;
-    }
+    
     for(int j = 0; j<l->next.size() && res; ++j) {
         if(l->next[j]->e == 0 && l->next[j]->s != 0) res = false;
         else if(l->next[j]->color == 0) {
