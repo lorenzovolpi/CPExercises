@@ -2,6 +2,15 @@
 #include <vector>
 #include <algorithm>
 
+/*
+    The problem is solved using dynamic programming. We use an array of length n, the same as
+    the length of the input. At each position i we go back through the orriginal array and find
+    each element with a distance to the current position less than or equal to the value of the
+    computed element in the original array. Then the value in the computed array is checked and
+    the minumum found is set at current position, increased by 1. The Algorithm runs in O(n^2) 
+    in time.
+*/
+
 int minimum_jumps(const std::vector<int>& items) {
     std::vector<int> jumps(items.size(), 0);
 

@@ -2,6 +2,14 @@
 #include <vector>
 #include <algorithm>
 
+/*
+    The problem is solved using dynamic programming. We use a table (n+1)*(C+1)
+    where each row corresponds to an item and each column corresponds to a possible
+    value of the capacity from 0 to C. The table is filled as seen in lessons and
+    the solution can be found ar right-bottom corner of the table. The solution
+    runs in O(n*C) in time.
+*/
+
 struct item {
     int v, w;
 

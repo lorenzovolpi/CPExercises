@@ -2,6 +2,14 @@
 #include <vector>
 #include <algorithm>
 
+/*
+    The problem is solved using dynamic programming. We use a table n*m where
+    n and m are the lengths of the two strings and each row corresponds to a char
+    of the first string and each column to a char of the second string. At any position
+    [i][j] we have the lcs of the prefix of length i of the first string and the prefix
+    of length j of the second string. The solution is found in O(n*m) time complexity.
+*/
+
 int lcs_len(std::string st1, int len1, std::string st2, int len2) {
     
     std::vector<std::vector<int>> matrix;

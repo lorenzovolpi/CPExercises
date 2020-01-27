@@ -2,33 +2,55 @@
 #include <vector>
 #include <algorithm>
 
-int lis(const std::vector<int>& items, int start, int end) {
-    if (start == end) return 1;
+/*
+    The solution is computed using dynamic programming. The longest bitonic subsequence is
+    computed using the LIS of the input array and of its reverse, each computed in O(nlogn)
+    in time as seen during lessons. Then the resulting arrays are scanned the first from
+    left to right and the second from right to left and the max of the sum of the two minus 1 is
+    the requested LBS. The algorithm runs in O(nlogn) in time.
+*/
+
+int bs(const std::vector<int> &v, int s, int e, int x) {
+    int mid = (s + e) / 2;
+    if(s == e) return s;
+    if(v[mid] >= x) return bs(v, s, mid, x);
+    else return bs(v, mid + 1, e, x);
+}
+
+std::vector<int> lis(const std::vector<int>& items) {
+    std::vector<int> dl(1);
     std::vector<int> subs(items.size(), 1);
-    int max = 1;
-    bool inc = end - start > 0;
-    for(int i = start + (inc ? 1 : -1); (inc && i <= end || !inc && i >= end); i += (inc ? 1 : -1)) {
-        int imax = 0;
-
-        for(int j = (inc ? i-1 : i+1); (inc && j>=start || !inc && j<=start); j -= (inc ? 1 : -1)) {
-            if(items[j] < items[i]) {
-                if(subs[j] > imax) imax = subs[j];
-            }
+    dl[0] = items[0];
+    for(int i = 1; i<items.size(); ++i) {
+        if(items[i] > dl.back()) {
+            dl.push_back(items[i]);
+            subs[i] = dl.size();
+        } else {
+            int r = bs(dl, 0, dl.size() - 1, items[i]);
+            dl[r] = items[i];
+            subs[i] = r+1;
         }
-
-        subs[i] = imax + 1;
-        if(subs[i] > max) max = subs[i];
     }
 
-    return max;
+    return subs;
+}
+
+std::vector<int> reverse(const std::vector<int>& v) {
+    std::vector<int> res(v.size());
+    for(int i = 0, j = v.size() - 1; i < v.size(); ++i, --j) {
+        res[i] = v[j];
+    }
+
+    return res;
 }
 
 int lbs(const std::vector<int>& items) {
 
+    std::vector<int> lisv = lis(items);
+    std::vector<int> ldsv = lis(reverse(items));
     int max = 0;
-    for(int i = 0; i<items.size(); ++i) {
-        int imax = lis(items, 0, i) + lis(items, items.size() - 1, i) - 1;
-        if (imax > max) max = imax;
+    for(int i = 0, j = items.size() - 1; i<items.size(); ++i, --j) {
+        if(lisv[i] + ldsv[j] - 1 > max) max = lisv[i] + ldsv[j] - 1;
     }
 
     return max;

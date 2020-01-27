@@ -2,6 +2,15 @@
 #include <vector>
 #include <algorithm>
 
+/*
+    The problem is solved using dynamic programming. We use a table n*m where
+    n and m are the lengths of the two strings and each row corresponds to a char
+    of the first string and each column to a char of the second string. At any position
+    [i][j] we have the edit distance between the prefix of length i of the first string 
+    and the prefix of length j of the second string. The solution is found in O(n*m) 
+    time complexity.
+*/
+
 template <typename T>
 T min3 (T a, T b, T c) {
     return a <= b ? (a <= c ? a : c) :
