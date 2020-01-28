@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 
+// https://codeforces.com/problemset/problem/92/B
+
 int main() {
     std::string s;
     std::cin >> s;
