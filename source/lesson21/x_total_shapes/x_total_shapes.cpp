@@ -1,6 +1,12 @@
 #include <iostream>
 #include <vector>
 
+/*
+    The problem is equal to find all connected components in an undirect graph. So we
+    perform a dfs visit and for every new root discovered we count a new x shape.
+    The problem runs in O(E+V).
+*/
+
 void xts_visit(const std::vector<std::string>& matrix, std::vector<std::vector<int>>& colors, int i, int j, int n, int m) {
     colors[i][j] = 1;
     

@@ -2,6 +2,14 @@
 #include <vector>
 #include <algorithm>
 
+/*
+    The solution can be found firstly sorting the array of meetings in
+    increasing order of the ending time. The the first meeting is taken
+    and all overlapping meetings are discarded. The the next valid metting
+    is taken and so on. The solution is computed in O(nlogn) with n the
+    number of the meetings.
+*/
+
 struct meeting {
     int i, s, e;
 

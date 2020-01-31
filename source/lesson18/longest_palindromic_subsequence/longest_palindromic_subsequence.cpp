@@ -2,6 +2,14 @@
 #include <vector>
 #include <algorithm>
 
+/*
+    This problem is solved using dynamic programming. A table of size n*n is built
+    and element at position [i][j] indicates if longest palindromic subsequence from 
+    i to j. To compute each element of the table we check if elements at position i and j
+    are equal; if so the solution is [i+1][j-1] + 2, else is the maximum value between
+    [i+1][j] and [i][j-1]. The solution runs in O(n^2);
+*/
+
 int lps(const std::string& st) {
     std::vector<std::vector<int>> matrix;
     for(int i = 0; i<st.length(); ++i) matrix.emplace_back(st.length(), 0);

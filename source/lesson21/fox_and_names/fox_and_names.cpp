@@ -2,6 +2,14 @@
 #include <vector>
 #include <algorithm>
 
+/*
+    The problem is equivalent to finding a valid topological sort given
+    all the constarints from the input. We save all the constraints as
+    edges and then we compute a topological order to find a new
+    and valid alphabetical order. The cost is equal to the cost of a DFS
+    so it runs in O(E + V).
+*/
+
 struct letter{
     char l;
     int s = 0, e = 0, color = 0;

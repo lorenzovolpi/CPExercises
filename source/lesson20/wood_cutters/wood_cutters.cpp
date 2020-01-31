@@ -1,6 +1,12 @@
 #include <iostream>
 #include <vector>
 
+/*
+    The problem is solved in a greedy fashion. The trees array is scanned fron left to right 
+    and for each tree we make it fall to its left if it can, otherwise to its right. We don't cut
+    it if it does not have space to fall. The algorithm runs in O(n) in time.
+*/
+
 struct tree{
     int x, h;
 

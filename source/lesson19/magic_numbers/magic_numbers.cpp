@@ -2,6 +2,13 @@
 #include <vector>
 #include <algorithm>
 
+/*
+    The solution can be found in a greedy fashion scanning all digits
+    of the input number and pregressively checking that those digits
+    match the expected pattern. The solution takes O(logn) in time,
+    where n is the input value.
+*/ 
+
 std::vector<int> parse(int number) {
     std::vector<int> parsed;
     while(number != 0) {

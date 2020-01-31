@@ -2,6 +2,14 @@
 #include <vector>
 #include <algorithm>
 
+/*
+    The solution to this problem is found using dynamic programming on
+    trees. At each node, we can choose if we want to take the current node
+    or not. If we take it we sum the cover computed con chilren. If we do 
+    not take it we must add 1 for each children and then summ covers of all 
+    grandchildren.
+*/
+
 struct edge{
     int v1, v2;
 

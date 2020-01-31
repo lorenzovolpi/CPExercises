@@ -2,6 +2,13 @@
 #include <vector>
 #include <cstdlib>
 
+/*
+    The solution can be found in a greedy fashion in O(n) in time
+    computing for each element of the input array the difference between
+    that element and the preceding one in the array. All values are summed up
+    for the result.
+*/
+
 typedef long long llong;
 
 llong wilbur_steps(const std::vector<llong>& arrb) {

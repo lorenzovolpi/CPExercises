@@ -1,6 +1,14 @@
 #include <iostream>
 #include <algorithm>
 
+/*
+    For this solution we compute the greedy sequence of alternating 0 and 1
+    in a greedy fashion in O(n) time. Then, as inverting a contiguos subsequnce
+    we can increase the computed length at most by 2, we compute the minimum
+    between the length of the wntire sequence and the increased value computed.
+    The result can be found in O(n) in time.
+*/
+
 int alternative(const std::string& num) {
     char last = num[0];
     int sum = 1;
