@@ -2,32 +2,40 @@
 #include <vector>
 #include <algorithm>
 
-struct disjoint_set
-{
-    int x, n = 1;
-    disjoint_set *next = NULL, *prev = this, *r;
+/*
+    The problem is solved using Kruskal's algorithm. Disjoint sets
+    are implemented using trees with all common heuristics and runs
+    in O(m*alpha(n)). The Kruskal's algorithm runs in O(|E|log|V|)
+    in time.
+*/
 
-    disjoint_set(int x) : x(x) {
-        r = this;
+template <typename T>
+struct disjset {
+    T v;    
+    disjset* p;
+    int rank = 0;
+
+    disjset(T v) : v(v) {
+        this->p = this;
     }
 
-    void merge(disjoint_set* m) {
-        disjoint_set *last = this->r->prev, *firstm = m->r;
-
-        last->next = firstm;
-        firstm->prev = last;
-        this->r->n += firstm->n;
-
-        while(firstm != NULL) {
-            firstm->r = this->r;
-            if(firstm->next == NULL) this->r->prev = firstm;
-            firstm = firstm->next;
+    disjset* findSet() {
+        if(this != this->p) {
+            this->p = this->p->findSet();
         }
-    } 
+        return this->p;
+    }
 
-    static void union_set(disjoint_set* s1, disjoint_set* s2) {
-        if(s1->r->n > s2->r->n) s1->merge(s2);
-        else s2->merge(s1);
+    static void unionSet(disjset* s1, disjset* s2){
+        disjset *r1 = s1->findSet(), *r2 = s2->findSet();
+        if(r1->rank > r2->rank) {
+            r2->p = r1;
+        } else if( r2->rank > r1->rank) {
+            r1->p = r2;
+        } else {
+            r2->p = r1;
+            r1->rank++;
+        }
     }
 };
 
@@ -41,8 +49,8 @@ int main() {
     int n, m;
     std::cin >> n;
     std::cin >> m;
-    std::vector<disjoint_set*> sets;
-    for(int i = 0; i<n; ++i) sets.push_back(new disjoint_set(i));
+    std::vector<disjset<int>*> sets;
+    for(int i = 0; i<n; ++i) sets.push_back(new disjset<int>(i));
     std::vector<edge> edges;
     for(int i = 0; i<m; ++i) {
         int u, v, w;
@@ -58,13 +66,12 @@ int main() {
 
     int sum = 0;
     for(int i = 0; i<m; ++i) {
-        disjoint_set *s1 = sets[edges[i].u], *s2 = sets[edges[i].v];
-        if(s1->r != s2->r) {
-            disjoint_set::union_set(s1, s2);
+        disjset<int> *s1 = sets[edges[i].u], *s2 = sets[edges[i].v];
+        if(s1->findSet() != s2->findSet()) {
+            disjset<int>::unionSet(s1, s2);
             sum += edges[i].w;
         }
     }
 
     std::cout << sum << std::endl;
-
 }

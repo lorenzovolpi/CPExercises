@@ -31,4 +31,35 @@ struct disjset {
     }
 };
 
+template <typename T>
+struct ldisjset
+{
+    T x;
+    int n = 1;
+    ldisjset *next = nullptr, *prev = this, *r;
+
+    ldisjset(T x) : x(x) {
+        r = this;
+    }
+
+    void merge(ldisjset* m) {
+        ldisjset *last = this->r->prev, *firstm = m->r;
+
+        last->next = firstm;
+        firstm->prev = last;
+        this->r->n += firstm->n;
+
+        while(firstm != NULL) {
+            firstm->r = this->r;
+            if(firstm->next == NULL) this->r->prev = firstm;
+            firstm = firstm->next;
+        }
+    } 
+
+    static void union_set(ldisjset* s1, ldisjset* s2) {
+        if(s1->r->n > s2->r->n) s1->merge(s2);
+        else s2->merge(s1);
+    }
+};
+
 #endif
