@@ -20,14 +20,18 @@ struct bit
     bit(int n, int val) : v(n + 1, val)
     {
         v[0] = 0;
-        for (int i = 0; (i + (i & -1)) <= n; ++i) { v[i + (i & -i)] += v[i]; }
+        for (int i = 1; i <= n; ++i) 
+            if((i + (i & -i)) <= n) 
+                v[i + (i & -i)] += v[i]; 
     };
 
     bit(std::vector<int> vec) : v(vec.size() + 1)
     {
         v[0] = 0;
         for (int i = 0; i < vec.size(); ++i) { v[i + 1] = vec[i]; }
-        for (int i = 1; (i + (i & -i)) <= vec.size(); ++i) { v[i + (i & -i)] += v[i]; }
+        for (int i = 1; i <= vec.size(); ++i) 
+            if((i + (i & -i)) <= vec.size()) 
+                v[i + (i & -i)] += v[i];
     };
 
     void add(int k, int val)
