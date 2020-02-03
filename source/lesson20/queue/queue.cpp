@@ -13,7 +13,8 @@
     we put that person in position j, otherwise if j is greater we push j on the stack and decrease j
     and if j is less we puth the ith element in the top position of the stack and decrease i. In this
     way at each iteration we keep a stack of indeces, from the nearest to the furthest, of avaliable
-    positions for the ith element, from ps[i]->a on. The algorithm runs in O(nlogn) in time.
+    positions for the ith element, from ps[i]->a on. People sorted this way are then assigned a height 
+    value decreasing from left to right. The algorithm runs in O(nlogn) in time.
 */
 
 struct person{
