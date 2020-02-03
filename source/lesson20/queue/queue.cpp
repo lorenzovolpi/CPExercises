@@ -3,6 +3,19 @@
 #include <algorithm>
 #include <deque>
 
+/*
+    To solve the problem we first need to sort all the people originary in the queue in
+    increasing order of the a value. Now the array is scanned and if and a value is grater
+    than its index no possible ordering is possible. Now we need to build a possible ordering
+    of the queue and this can be done in linear time using an auxiliary stack. We keep two 
+    indeces: the first scans the people array from right to left and the second keeps the current
+    available position in the array. When i and the a value of i element of people array are equal
+    we put that person in position j, otherwise if j is greater we push j on the stack and decrease j
+    and if j is less we puth the ith element in the top position of the stack and decrease i. In this
+    way at each iteration we keep a stack of indeces, from the nearest to the furthest, of avaliable
+    positions for the ith element, from ps[i]->a on. The algorithm runs in O(nlogn) in time.
+*/
+
 struct person{
     std::string name;
     int a, h = 0;

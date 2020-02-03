@@ -1,6 +1,14 @@
 #include <iostream>
 #include <vector>
 
+/*
+    The problem is solved using a variant of classic DFS visit. Each node, during
+    visit, is colored alternating two different sets of colors. If each node can
+    be colored following the pattern the bipartite graph property holds. The 
+    computational cost of the algorithm is equal to the one of DFS visit, so
+    the algorithm runs in linear time over the graph.
+*/
+
 bool visit(const std::vector<std::vector<int>>& matrix, std::vector<int>& colors, int i, int n, int c) {
     colors[i] = c;
     bool res = true;

@@ -9,6 +9,15 @@ struct end_vert{
     end_vert(int i, int e) : i(i), e(e) {}
 };
 
+/*
+    The problem is solved first computing all SCCs on the input
+    direct graph in linear time over the graph with the algorithm seen
+    during lessons. Then for each SCC the verteces with minumum value and
+    their multiplicity are computed and the sum of all the minima and
+    the product of all the multiplicities are given in output. The algorithm
+    runs in linear time over the graph.
+*/
+
 struct graph{
     std::vector<std::vector<int>> G;
     std::vector<std::vector<int>> GT;

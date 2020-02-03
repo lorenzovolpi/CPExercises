@@ -2,6 +2,12 @@
 #include <vector>
 #include <sstream>
 
+/*
+    This problem is solved computing all the SCCs on an indirect graph 
+    using the classic DFS algorithm. The algorithm runs in linear time 
+    over the graph.    
+*/
+
 struct node{
     int v, c = 0;
     std::vector<node*> next;
